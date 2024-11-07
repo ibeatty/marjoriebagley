@@ -8,4 +8,6 @@
 layout: home
 ---
 
-Hey, welcome to Marjorie Bagley's new web site!! 🎉
+<p>Hey, welcome to Marjorie Bagley's new web site!! 🎉</p>
+
+<p><em>Dev version 001</em></p>
