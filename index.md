@@ -8,6 +8,8 @@
 layout: home
 ---
 
+<div><img src="images/cropped-header_violin.jpg alt="side view of violin" /></div>
+
 <p>Hey, welcome to Marjorie Bagley's new web site!! 🎉</p>
 
 <p><em>Dev version 004</em></p>
