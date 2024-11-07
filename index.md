@@ -10,4 +10,4 @@ layout: home
 
 <p>Hey, welcome to Marjorie Bagley's new web site!! 🎉</p>
 
-<p><em>Dev version 002</em></p>
+<p><em>Dev version 003</em></p>
