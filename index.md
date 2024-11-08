@@ -10,7 +10,7 @@ layout: home
 
 ![side view of violin](images/cropped-header_violin.jpg)
 
-_Dev version 008_
+_Dev version 009_
 
 Marjorie Bagley enjoys a varied career as performer and pedagogue. In August of 2009, she happily returned to her home state to be Professor of Violin at the University of North Carolina Greensboro. She is one of the concertmasters and teaching faculty at the Brevard Music Festival in the summers, and is Principal Second violin of the ProMusica Chamber Orchestra.
 
