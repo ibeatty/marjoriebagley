@@ -24,6 +24,13 @@ layout: base
             {%- if forloop.last == false %}, {% endif -%}
         {% endfor %}
       {%- endif -%}</p>
+      {%- if page.category -%}
+        — {% for category in page.category %}
+          <span itemprop="category">
+            <span class="p-author h-card" itemprop="name">{{ category }}</span></span>
+            {%- if forloop.last == false %}, {% endif -%}
+        {% endfor %}
+      {%- endif -%}
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
