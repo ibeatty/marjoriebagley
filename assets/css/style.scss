@@ -77,3 +77,26 @@ h3.post-list-headline a {
   line-height: normal;
 }
 
+/* Style the .navbar list */
+ul.navbar {
+  list-style-type: none; /* Removes default bullet points */
+  padding: 0;
+  margin: 0 auto 1em 0; /* Centers the ul within its parent container */
+  display: flex; /* Arranges list items in a horizontal row */
+  justify-content: center; /* Centers the list items horizontally */
+
+}
+
+/* Style each list item */
+ul.navbar li {
+  margin: 0; /* Ensures no extra margin on list items */
+  padding: 0 10px; /* Adds horizontal padding around each item */
+  position: relative; /* Allows for use of ::after for separator */
+}
+
+/* Add a vertical pipe separator */
+ul.navbar li:not(:last-child)::after {
+  content: "|"; /* Adds the vertical pipe */
+  position: absolute;
+  right: -2px; /* Adjusts spacing of the separator */
+}

@@ -88,34 +88,34 @@
     }
   }
 
-  @media screen and (min-width: $on-medium) {
-    position: static;
-    float: right;
-    border: none;
-    background-color: inherit;
+  // @media screen and (min-width: $on-medium) {
+  //   position: static;
+  //   float: right;
+  //   border: none;
+  //   background-color: inherit;
 
-    label[for="nav-trigger"] {
-      display: none;
-    }
+  //   label[for="nav-trigger"] {
+  //     display: none;
+  //   }
 
-    .menu-icon {
-      display: none;
-    }
+  //   .menu-icon {
+  //     display: none;
+  //   }
 
-    input ~ .trigger {
-      display: block;
-    }
+  //   input ~ .trigger {
+  //     display: block;
+  //   }
 
-    .page-link {
-      display: inline;
-      padding: 0;
-      margin-left: auto;
+  //   .page-link {
+  //     display: inline;
+  //     padding: 0;
+  //     margin-left: auto;
 
-      &:not(:last-child) {
-        margin-right: 20px;
-      }
-    }
-  }
+  //     &:not(:last-child) {
+  //       margin-right: 20px;
+  //     }
+  //   }
+  // }
 }
 
 
@@ -203,7 +203,7 @@
  * Page content
  */
 .page-content {
-  padding: $spacing-unit 0;
+  padding: 0.5 * $spacing-unit 0 $spacing-unit 0;
   flex: 1 0 auto;
 }
 

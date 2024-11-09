@@ -32,6 +32,7 @@ future: true
 header_pages:
   - index.md
   - bio.md
+  - studying.md
 
 # Set to `true` to show excerpts on the homepage.
 #show_excerpts: false

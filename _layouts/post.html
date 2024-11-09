@@ -17,18 +17,14 @@ layout: base
           {{ mdate | date: date_format }}
         </time>
       {%- endif -%}
-      {%- if page.author -%}
-        • {% for author in page.author %}
-          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <span class="p-author h-card" itemprop="name">{{ author }}</span></span>
-            {%- if forloop.last == false %}, {% endif -%}
+      {%- if page.author -%} • 
+        {% for author in page.author %}{{ author }}
+          {%- if forloop.last == false %}, {% endif -%}
         {% endfor %}
-      {%- endif -%}</p>
-      {%- if page.category -%}
-        — {% for category in page.category %}
-          <span itemprop="category">
-            <span class="p-author h-card" itemprop="name">{{ category }}</span></span>
-            {%- if forloop.last == false %}, {% endif -%}
+      {%- endif -%}
+      {%- if page.category -%} — 
+        {% for category in page.category %}{{ category }}
+          {%- if forloop.last == false %}, {% endif -%}
         {% endfor %}
       {%- endif -%}
   </header>
