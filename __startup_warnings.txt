@@ -1,0 +1,238 @@
+Fetching gem metadata from https://rubygems.org/..........
+Fetching rake 13.2.1
+Installing rake 13.2.1
+Fetching bigdecimal 3.1.8
+Fetching rexml 3.3.9
+Fetching webrick 1.9.0
+Fetching rouge 4.4.0
+Fetching i18n 1.14.6
+Installing bigdecimal 3.1.8 with native extensions
+Installing rexml 3.3.9
+Installing webrick 1.9.0
+Installing rouge 4.4.0
+Installing i18n 1.14.6
+Fetching google-protobuf 4.28.3 (aarch64-linux)
+Installing google-protobuf 4.28.3 (aarch64-linux)
+Fetching sass-embedded 1.80.6
+Installing sass-embedded 1.80.6 with native extensions
+Fetching jekyll 4.3.4
+Installing jekyll 4.3.4
+Fetching jekyll-feed 0.17.0
+Fetching jekyll-seo-tag 2.8.0
+Installing jekyll-feed 0.17.0
+Installing jekyll-seo-tag 2.8.0
+Bundle complete! 2 Gemfile dependencies, 35 gems now installed.
+Use `bundle info [gemname]` to see where a bundled gem is installed.
+Post-install message from i18n:
+PSA: I18n will be dropping support for Ruby < 3.2 in the next major release (April 2025), due to Ruby's end of life for 3.1 and below (https://endoflife.date/ruby). Please upgrade to Ruby 3.2 or newer by April 2025 to continue using future versions of this gem.
+Configuration file: /site/_config.yml
+ Theme Config file: /site/_config.yml
+            Source: /site
+       Destination: /site/_site
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+       Jekyll Feed: Generating feed for posts
+DEPRECATION WARNING: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+2 │   "minima/skins/classic",
+  │   ^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    /site/assets/css/style.scss 2:3  root stylesheet
+DEPRECATION WARNING: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+3 │   "minima/initialize";
+  │   ^^^^^^^^^^^^^^^^^^^
+  ╵
+    /site/assets/css/style.scss 3:3  root stylesheet
+DEPRECATION WARNING: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+5 │ @import "minima/skins/auto";
+  │         ^^^^^^^^^^^^^^^^^^^
+  ╵
+    minima/skins/classic.scss 5:9    @import
+    /site/assets/css/style.scss 2:3  root stylesheet
+DEPRECATION WARNING: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+14 │ $lm-brand-color-light:     lighten($lm-brand-color, 40%) !default;
+   │                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    minima/skins/auto.scss 14:28     @import
+    minima/skins/classic.scss 5:9    @import
+    /site/assets/css/style.scss 2:3  root stylesheet
+DEPRECATION WARNING: lighten() is deprecated. Suggestions:
+
+color.scale($color, $lightness: 81.6%)
+color.adjust($color, $lightness: 40%)
+
+More info: https://sass-lang.com/d/color-functions
+
+   ╷
+14 │ $lm-brand-color-light:     lighten($lm-brand-color, 40%) !default;
+   │                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    minima/skins/auto.scss 14:28     @import
+    minima/skins/classic.scss 5:9    @import
+    /site/assets/css/style.scss 2:3  root stylesheet
+DEPRECATION WARNING: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+15 │ $lm-brand-color-dark:      darken($lm-brand-color, 25%) !default;
+   │                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    minima/skins/auto.scss 15:28     @import
+    minima/skins/classic.scss 5:9    @import
+    /site/assets/css/style.scss 2:3  root stylesheet
+DEPRECATION WARNING: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -49.0384615385%)
+color.adjust($color, $lightness: -25%)
+
+More info: https://sass-lang.com/d/color-functions
+
+   ╷
+15 │ $lm-brand-color-dark:      darken($lm-brand-color, 25%) !default;
+   │                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    minima/skins/auto.scss 15:28     @import
+    minima/skins/classic.scss 5:9    @import
+    /site/assets/css/style.scss 2:3  root stylesheet
+DEPRECATION WARNING: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+24 │ $lm-link-visited-color:    darken($lm-link-base-color, 15%) !default;
+   │                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    minima/skins/auto.scss 24:28     @import
+    minima/skins/classic.scss 5:9    @import
+    /site/assets/css/style.scss 2:3  root stylesheet
+DEPRECATION WARNING: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -28.5447761194%)
+color.adjust($color, $lightness: -15%)
+
+More info: https://sass-lang.com/d/color-functions
+
+   ╷
+24 │ $lm-link-visited-color:    darken($lm-link-base-color, 15%) !default;
+   │                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    minima/skins/auto.scss 24:28     @import
+    minima/skins/classic.scss 5:9    @import
+    /site/assets/css/style.scss 2:3  root stylesheet
+DEPRECATION WARNING: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+28 │ $lm-border-color-02:       lighten($lm-brand-color, 35%) !default;
+   │                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    minima/skins/auto.scss 28:28     @import
+    minima/skins/classic.scss 5:9    @import
+    /site/assets/css/style.scss 2:3  root stylesheet
+DEPRECATION WARNING: lighten() is deprecated. Suggestions:
+
+color.scale($color, $lightness: 71.4%)
+color.adjust($color, $lightness: 35%)
+
+More info: https://sass-lang.com/d/color-functions
+
+   ╷
+28 │ $lm-border-color-02:       lighten($lm-brand-color, 35%) !default;
+   │                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    minima/skins/auto.scss 28:28     @import
+    minima/skins/classic.scss 5:9    @import
+    /site/assets/css/style.scss 2:3  root stylesheet
+DEPRECATION WARNING: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+31 │ $lm-table-text-color:      lighten($lm-text-color, 18%) !default;
+   │                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    minima/skins/auto.scss 31:28     @import
+    minima/skins/classic.scss 5:9    @import
+    /site/assets/css/style.scss 2:3  root stylesheet
+DEPRECATION WARNING: lighten() is deprecated. Suggestions:
+
+color.scale($color, $lightness: 19.2857142857%)
+color.adjust($color, $lightness: 18%)
+
+More info: https://sass-lang.com/d/color-functions
+
+   ╷
+31 │ $lm-table-text-color:      lighten($lm-text-color, 18%) !default;
+   │                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    minima/skins/auto.scss 31:28     @import
+    minima/skins/classic.scss 5:9    @import
+    /site/assets/css/style.scss 2:3  root stylesheet
+DEPRECATION WARNING: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+46 │   "minima/custom-variables", // Hook to override predefined variables.
+   │   ^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    minima/initialize.scss 46:3      @import
+    /site/assets/css/style.scss 3:3  root stylesheet
+DEPRECATION WARNING: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+47 │   "minima/base",             // Defines element resets.
+   │   ^^^^^^^^^^^^^
+   ╵
+    minima/initialize.scss 47:3      @import
+    /site/assets/css/style.scss 3:3  root stylesheet
+WARNING: 18 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+                    done in 0.281 seconds.
+ Auto-regeneration: enabled for '/site'
+    Server address: http://0.0.0.0:4000
+  Server running... press ctrl-c to stop.
+                    ------------------------------------------------
+      Jekyll 4.3.4   Please append `--trace` to the `serve` command 
+                     for any additional information or backtrace. 
+                    ------------------------------------------------
+/usr/local/bundle/gems/jekyll-4.3.4/lib/jekyll/commands/serve.rb:286:in `join': SIGTERM (SignalException)
+	from /usr/local/bundle/gems/jekyll-4.3.4/lib/jekyll/commands/serve.rb:286:in `boot_or_detach'
+	from /usr/local/bundle/gems/jekyll-4.3.4/lib/jekyll/commands/serve.rb:223:in `start_up_webrick'
+	from /usr/local/bundle/gems/jekyll-4.3.4/lib/jekyll/commands/serve.rb:102:in `process'
+	from /usr/local/bundle/gems/jekyll-4.3.4/lib/jekyll/command.rb:91:in `block in process_with_graceful_fail'
+	from /usr/local/bundle/gems/jekyll-4.3.4/lib/jekyll/command.rb:91:in `each'
+	from /usr/local/bundle/gems/jekyll-4.3.4/lib/jekyll/command.rb:91:in `process_with_graceful_fail'
+	from /usr/local/bundle/gems/jekyll-4.3.4/lib/jekyll/commands/serve.rb:86:in `block (2 levels) in init_with_program'
+	from /usr/local/bundle/gems/mercenary-0.4.0/lib/mercenary/command.rb:221:in `block in execute'
+	from /usr/local/bundle/gems/mercenary-0.4.0/lib/mercenary/command.rb:221:in `each'
+	from /usr/local/bundle/gems/mercenary-0.4.0/lib/mercenary/command.rb:221:in `execute'
+	from /usr/local/bundle/gems/mercenary-0.4.0/lib/mercenary/program.rb:44:in `go'
+	from /usr/local/bundle/gems/mercenary-0.4.0/lib/mercenary.rb:21:in `program'
+	from /usr/local/bundle/gems/jekyll-4.3.4/exe/jekyll:15:in `<top (required)>'
+	from /usr/local/bundle/bin/jekyll:25:in `load'
+	from /usr/local/bundle/bin/jekyll:25:in `<main>'
