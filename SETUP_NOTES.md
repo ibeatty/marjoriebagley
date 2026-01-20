@@ -28,11 +28,23 @@ docker run --rm -v "$(pwd):/site" -p 4000:4000 -e JEKYLL_INCREMENTAL=false bretf
 
 ## GitHub Pages Deployment
 
-GitHub Pages will automatically use the local `_layouts`, `_includes`, and `_sass` files when it builds the site, since the `theme:` line in `_config.yml` is commented out.
+This site uses a **GitHub Actions workflow** (`.github/workflows/jekyll.yml`) to build and deploy with Jekyll 4.x.
+
+### Required GitHub Settings
+
+In your repository settings, you need to configure GitHub Pages to use GitHub Actions:
+
+1. Go to **Settings** → **Pages**
+2. Under "Build and deployment" → "Source"
+3. Select **GitHub Actions** (not "Deploy from a branch")
+
+This allows the site to use Jekyll 4.3+ with the modern Sass features, instead of the legacy GitHub Pages builder which only supports Jekyll 3.x.
 
 ## Recent Changes (January 2026)
 
+- Added GitHub Actions workflow (`.github/workflows/jekyll.yml`) for Jekyll 4.x deployment
 - Removed `minima.gemspec` (no longer needed)
-- Updated Gemfile to remove gemspec reference
+- Updated Gemfile to use Jekyll 4.3+ instead of gemspec reference
 - Fixed deprecated Sass color functions in `_sass/minima/skins/auto.scss`
 - Commented out `theme: minima` in `_config.yml` to use local files
+- **ACTION REQUIRED**: Change GitHub Pages source to "GitHub Actions" in repo settings
