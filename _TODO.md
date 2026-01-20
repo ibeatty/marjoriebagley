@@ -17,5 +17,6 @@
 - [ ] Update M's bio
 - [ ] Write a home page intro blurb
 - [ ] Write content w/links for the "Studying with Marjorie" page
-- [ ] Add some more event announcements
+- [x] Add GSO Masterworks and Pops event announcements
+- [ ] Add relevant GSO chamber series announcements
 
