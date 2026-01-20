@@ -10,13 +10,10 @@ description: >
 
 # Build settings
 
-# If you clone the Minima repo and build locally, use this setting.
-theme: minima
-
-# As of November 2023, GitHub Pages still uses Minima 2.5.1 (https://pages.github.com/versions/). 
-# If you want to use the latest Minima version on GitHub Pages, use the following setting and 
-# add a line comment on "theme: minima" above.
-#remote_theme: jekyll/minima
+# Using local Minima 3.0 theme files from _layouts, _includes, and _sass directories.
+# This allows us to use modern Sass and avoid deprecation warnings.
+# The theme line is commented out so GitHub Pages uses our local files instead.
+#theme: minima
 
 plugins:
   - jekyll-feed

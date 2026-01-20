@@ -2,6 +2,8 @@
 
 ## Infrastructure & Process
 
+- [x] Fixed Jekyll deprecation warnings (updated to Minima 3.0 with modern Sass color functions)
+- [ ] Test GitHub Pages build after recent changes
 - [ ] Create GitHub account for M & give shared repo access
 
 
