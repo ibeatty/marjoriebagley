@@ -28,6 +28,73 @@ Additional constraints and aspirations:
 - **Low learning curve, durable tools.** Ian has decades of CMS experience but wants *simple* here. Avoid idiosyncratic/niche tools that demand updates, forward migrations, or rescue migrations if abandoned. Prefer boring, widely-adopted, long-lived technology. This weighs heavily in stack/CMS choice: project longevity and maintainer health matter as much as features.
 - **Positioning — Marjorie's niche is an unusual hybrid**, and the site design must serve it: she is (a) a high-profile university faculty member whose studio depends on **active recruiting of 1:1 violin performance students**, and (b) a working performer (GSO concertmaster + ad-hoc chamber groups). She is **not** a private teacher (rare special cases aside), and she is neither "pure faculty" nor "pure performer" — the site should present the two roles as synergistic, and speak to both prospective students and concert audiences.
 
+## Ground rules for future changes (read before "improving" anything)
+
+This stack is deliberately small and boring; its entire value is that it
+needs no attention. When in doubt, do less. The project's biggest risk is a
+well-meaning change that adds maintenance surface or staleness.
+
+**Invariants — do not violate without Ian's explicit sign-off:**
+
+- No build tooling beyond Jekyll. No Sass/PostCSS/npm/bundlers/frameworks/
+  theme gems — ever again. Styles remain exactly ONE plain-CSS file;
+  recoloring means editing the token block at the top of it, nothing else.
+- The public site currently ships zero JavaScript. Keep it that way absent a
+  strong, Ian-approved reason.
+- Never add: a blog/news section, any widget that can render an empty state
+  (evergreen prose fallbacks instead — the reasons are in
+  `_DesignResearch.md`), a photography-dependent design element, per-project
+  nav items, or a nav beyond ~5 items.
+- The `_events/` front-matter schema, `admin/config.yml` (Sveltia), and
+  `scripts/scrape_gso_concerts.py` describe the same data — a field change in
+  one MUST be mirrored in the other two in the same commit.
+- `collections.events.output: false` stays false (no per-event pages).
+- The auth worker (separate private repo `ibeatty/sveltia-cms-auth`) is
+  configured via its `wrangler.toml` `[vars]` ONLY. Never set its plaintext
+  vars in the Cloudflare dashboard — `wrangler deploy` wipes those on every
+  git-triggered build.
+- Don't delete `mockups/` until the design decision is final (it's Marjorie's
+  review set); delete it at launch.
+
+**Facts that will save you an afternoon:**
+
+- The staging site's real URL is **https://ianbeatty.com/marjoriebagley/** —
+  Ian's user-site custom domain fronts all his project sites, and
+  `ibeatty.github.io/...` merely redirects there. Sveltia reports
+  `ianbeatty.com` to the auth worker; the allowlist already covers it (and
+  `marjoriebagley.com` for the future cutover).
+- Auth worker health probe uses `site_id=` (NOT `domain=` — that always
+  fails): `curl -sI ".../auth?provider=github&site_id=ianbeatty.com"` should
+  return a `location: github.com/login/oauth/authorize...` header.
+- Pushing to `main` deploys staging immediately. That is low-stakes today;
+  **after the marjoriebagley.com DNS cutover the same push is the live
+  public site** — recalibrate accordingly.
+- `make build` completes with ZERO warnings. Any new warning is a regression
+  you introduced.
+- An event counts as "upcoming" through the end of its concert day
+  (`_includes/event-split.html`); the Monday cron rebuild ages events out
+  between pushes. If upcoming looks stale, check the cron ran.
+
+**Recipes for the common tasks:**
+
+- *Add a concert:* `make scrape` → `make scrape ARGS="--import N,M"` →
+  review (set `role: Soloist` if deserved, trim blurb) → commit. Or let
+  Marjorie do it in Sveltia at `/admin/`.
+- *Recolor the site:* edit the ~9 custom properties at the top of
+  `assets/css/main.css`. Touch nothing else.
+- *Add a page:* new `.md` with `layout: page`, `title`, short `nav_title`,
+  `permalink`; add to `header_pages` in `_config.yml` AND to the pages
+  section of `admin/config.yml`.
+- *Verify any change:* `make build`, then actually look at the affected
+  pages (desktop AND ~375px mobile width) before pushing.
+
+**Working with Ian:** verify claims against the live system before asserting
+them; state uncertainty plainly (e.g., the violin's "1703" date is
+unverified — never let it onto the public site as fact until Marjorie
+confirms); never fabricate content (press quotes, dates, venues); prefer
+small reversible commits with clear messages; keep `_TODO.md` and the
+underscore docs in sync with reality as you work.
+
 ## Build & serve
 
 Use the Makefile (run `make` for the list):
