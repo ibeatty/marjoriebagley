@@ -50,7 +50,10 @@ it only runs for a moment at sign-in).
    hit the redeploy/Deploy button the Variables screen offers. ("I set the
    secrets but sign-in still fails" almost always means this was skipped.)
 4. Note the Worker URL, e.g. `https://sveltia-cms-auth.<account>.workers.dev`
-   (shown on the Worker's overview page).
+   (shown on the Worker's overview page). If the overview says **"No URLs
+   enabled"**: Settings → Domains & Routes → enable the **workers.dev** route
+   (registering the one-time account subdomain if prompted — the name is
+   cosmetic). It can take a minute to start resolving after enabling.
 
 ## 3. Connect the pieces
 
