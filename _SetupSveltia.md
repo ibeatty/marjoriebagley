@@ -55,6 +55,23 @@ it only runs for a moment at sign-in).
    (registering the one-time account subdomain if prompted — the name is
    cosmetic). It can take a minute to start resolving after enabling.
 
+### Worker health check (no browser needed)
+
+```bash
+curl -sI "https://sveltia-cms-auth.ian-8b3.workers.dev/auth?provider=github&site_id=ibeatty.github.io" | grep -i location
+```
+
+A `location: https://github.com/login/oauth/authorize?...` line means the
+worker is fully configured. Note the parameter is **`site_id`** (a
+Netlify-era convention Sveltia inherited) — probing with `domain=` always
+returns UNSUPPORTED_DOMAIN and proves nothing.
+
+Config lives as code now: `ALLOWED_DOMAINS` and `GITHUB_CLIENT_ID` are set
+in the worker repo's `wrangler.toml` `[vars]` (plus `keep_vars = true`), so
+every git-triggered build applies them; only `GITHUB_CLIENT_SECRET` lives as
+a dashboard Secret (those survive deploys). Don't set the two plaintext vars
+in the dashboard — `wrangler deploy` treats the toml as the source of truth.
+
 ## 3. Connect the pieces
 
 1. Back in the GitHub OAuth App: set the real **callback URL** =
