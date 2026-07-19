@@ -1,5 +1,9 @@
 # Sveltia CMS: one-time setup steps (Ian)
 
+> **Status (Jul 19 2026): steps 0–4 COMPLETE — sign-in verified end-to-end.**
+> Remaining: §5 (Marjorie's account + collaborator invite). The rest of this
+> doc is kept as reference for how the plumbing fits together.
+
 The CMS itself is already wired up: `admin/index.html` + `admin/config.yml`
 deploy with the site, so the editor lives at `<site-url>/admin/`. What remains
 is the auth plumbing (≈20 minutes, once) so that GitHub sign-in works from the

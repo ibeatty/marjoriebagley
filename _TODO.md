@@ -5,8 +5,9 @@ the full plan and `_SetupSveltia.md` for CMS setup steps.)*
 
 ## Ian — infrastructure (one-time manual steps)
 
-- [ ] Sveltia CMS auth: GitHub OAuth app + Cloudflare worker + fill in
-      `base_url` in `admin/config.yml` (walkthrough: `_SetupSveltia.md`)
+- [x] Sveltia CMS auth: DONE (Jul 19 2026) — worker live at
+      sveltia-cms-auth.ian-8b3.workers.dev, config-as-code in its
+      wrangler.toml, sign-in verified from ianbeatty.com/marjoriebagley/admin/
 - [ ] Create GitHub account for M & invite as repo collaborator
 - [ ] Pick which 2026–27 GSO concerts M is playing and import them:
       `make scrape`, then `make scrape ARGS="--import …"` (incl. Dragon's
