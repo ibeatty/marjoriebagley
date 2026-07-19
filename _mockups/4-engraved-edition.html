@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction 4 · Engraved Edition — Marjorie Bagley mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fcfbf8;
+  --ink:#191713;
+  --dim:#6b655b;
+  --hair:#dcd7cc;
+  --burgundy:#5e1a26;
+  --gar:"EB Garamond", Garamond, Georgia, serif;
+}
+*{box-sizing:border-box;margin:0}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--gar);
+  font-size:1.18rem;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair)}
+a:hover{color:var(--burgundy);border-color:var(--burgundy)}
+.wrap{max-width:38rem;margin:0 auto;padding:0 1.25rem}
+
+/* staff-line ornament */
+.staff{display:block;width:100%;height:22px;margin:0 auto;color:var(--hair)}
+.staff.narrow{max-width:16rem}
+
+/* title page */
+header.title{
+  text-align:center;
+  padding:4.2rem 0 2.6rem;
+}
+.title .ed{
+  font-variant:small-caps;letter-spacing:.34em;
+  font-size:.92rem;color:var(--dim);
+}
+h1{
+  font-weight:400;
+  font-size:clamp(2.7rem,8vw,4.2rem);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  line-height:1.1;
+  margin:1.6rem 0 .4rem;
+}
+.title .inst{
+  font-style:italic;font-size:1.5rem;color:var(--burgundy);
+}
+.title .creds{
+  margin-top:2.2rem;
+  font-size:1.05rem;color:var(--dim);
+  display:grid;gap:.3rem;
+}
+.title .creds .sc{font-variant:small-caps;letter-spacing:.14em;color:var(--ink)}
+
+/* nav as printed running heads */
+nav{
+  text-align:center;
+  border-top:1px solid var(--hair);
+  border-bottom:1px solid var(--hair);
+  padding:.75rem 0;
+  margin:1rem 0 0;
+}
+nav a{
+  border:none;
+  font-variant:small-caps;
+  letter-spacing:.22em;
+  font-size:1rem;
+  margin:0 1rem;
+}
+nav a.active{color:var(--burgundy)}
+
+section{padding:2.8rem 0 0}
+h2{
+  text-align:center;
+  font-weight:400;
+  font-variant:small-caps;
+  letter-spacing:.3em;
+  font-size:1.15rem;
+  margin-bottom:.4rem;
+}
+h2 + .staff{margin-bottom:1.6rem}
+
+.prose{text-wrap:pretty}
+.prose p + p{margin-top:1rem;text-indent:1.6em}
+
+/* season as an engraved index/table of contents */
+.toc{margin-top:.6rem}
+.toc-row{
+  display:flex;align-items:baseline;gap:.6rem;
+  padding:.5rem 0;
+  font-size:1.12rem;
+}
+.toc-row .n{
+  font-variant:small-caps;color:var(--burgundy);
+  min-width:4.4rem;letter-spacing:.06em;
+}
+.toc-row .dots{
+  flex:1;border-bottom:1px dotted var(--hair);
+  transform:translateY(-.3em);
+}
+.toc-row .s{font-style:italic;color:var(--dim);font-size:1rem;white-space:nowrap}
+.toc-note{
+  text-align:center;font-style:italic;color:var(--dim);
+  font-size:1.02rem;margin-top:1.4rem;text-wrap:pretty;
+}
+
+/* twin colophon blocks */
+.colo{display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;margin-top:.6rem}
+.colo h3{
+  font-variant:small-caps;font-weight:400;letter-spacing:.2em;
+  font-size:1.05rem;margin-bottom:.5rem;color:var(--burgundy);
+}
+.colo p{font-size:1.05rem;color:#332f28;text-wrap:pretty}
+.colo a.m{display:inline-block;margin-top:.55rem;font-variant:small-caps;letter-spacing:.12em}
+@media (max-width:600px){.colo{grid-template-columns:1fr}}
+
+footer{
+  margin-top:3.2rem;padding:1.8rem 0 2.6rem;
+  text-align:center;color:var(--dim);font-size:1rem;
+}
+footer .pn{
+  font-variant:small-caps;letter-spacing:.3em;color:var(--burgundy);
+  display:block;margin-top:.9rem;
+}
+footer a{border:none;margin:0 .5rem}
+</style>
+</head>
+<body>
+<header class="title wrap">
+  <div class="ed">greensboro · north carolina</div>
+  <h1>Marjorie<br>Bagley</h1>
+  <div class="inst">violin</div>
+  <svg class="staff narrow" viewBox="0 0 320 22" aria-hidden="true" preserveAspectRatio="none">
+    <g stroke="currentColor" stroke-width="1">
+      <line x1="0" y1="1" x2="320" y2="1"/><line x1="0" y1="6" x2="320" y2="6"/>
+      <line x1="0" y1="11" x2="320" y2="11"/><line x1="0" y1="16" x2="320" y2="16"/>
+      <line x1="0" y1="21" x2="320" y2="21"/>
+    </g>
+  </svg>
+  <div class="creds">
+    <span><span class="sc">Professor of Violin</span> — UNC Greensboro School of Music</span>
+    <span><span class="sc">Concertmaster</span> — Greensboro Symphony Orchestra</span>
+    <span><span class="sc">Chamber Musician</span> — North Carolina &amp; beyond</span>
+  </div>
+</header>
+
+<nav>
+  <a class="active" href="#">Home</a><a href="#">Biography</a><a href="#">Studying</a><a href="#">Season</a><a href="#">Contact</a>
+</nav>
+
+<main class="wrap">
+  <section>
+    <h2>The 2026–27 Season</h2>
+    <svg class="staff" viewBox="0 0 320 22" aria-hidden="true" preserveAspectRatio="none">
+      <g stroke="currentColor" stroke-width="1">
+        <line x1="0" y1="1" x2="320" y2="1"/><line x1="0" y1="6" x2="320" y2="6"/>
+        <line x1="0" y1="11" x2="320" y2="11"/><line x1="0" y1="16" x2="320" y2="16"/>
+        <line x1="0" y1="21" x2="320" y2="21"/>
+      </g>
+    </svg>
+    <div class="toc">
+      <div class="toc-row"><span class="n">Oct 3</span><span>Symphony Opening Night!</span><span class="dots"></span><span class="s">Masterworks</span></div>
+      <div class="toc-row"><span class="n">Nov 7</span><span>Four Seasons Reimagined</span><span class="dots"></span><span class="s">Masterworks</span></div>
+      <div class="toc-row"><span class="n">Nov 17</span><span>Faculty Recital</span><span class="dots"></span><span class="s">UNCG</span></div>
+      <div class="toc-row"><span class="n">Jan 30</span><span>The Planets + Star Wars</span><span class="dots"></span><span class="s">Masterworks</span></div>
+      <div class="toc-row"><span class="n">Feb 27</span><span>Magical Mozart &amp; Brahms</span><span class="dots"></span><span class="s">Masterworks</span></div>
+      <div class="toc-row"><span class="n">May 15</span><span>Beethoven's Ninth</span><span class="dots"></span><span class="s">Masterworks</span></div>
+    </div>
+    <p class="toc-note">In season, Marjorie leads most Greensboro Symphony classical programs
+    from the concertmaster's chair; recitals and chamber dates are announced here.</p>
+  </section>
+
+  <section>
+    <h2>Of Note</h2>
+    <svg class="staff" viewBox="0 0 320 22" aria-hidden="true" preserveAspectRatio="none">
+      <g stroke="currentColor" stroke-width="1">
+        <line x1="0" y1="1" x2="320" y2="1"/><line x1="0" y1="6" x2="320" y2="6"/>
+        <line x1="0" y1="11" x2="320" y2="11"/><line x1="0" y1="16" x2="320" y2="16"/>
+        <line x1="0" y1="21" x2="320" y2="21"/>
+      </g>
+    </svg>
+    <div class="colo">
+      <div>
+        <h3>Studying with Marjorie</h3>
+        <p>Violin study in UNCG's BM, MM &amp; DMA programs: weekly one-on-one lessons and
+        chamber coaching, attentive to the unique qualities of each student.</p>
+        <a class="m" href="#">Prospective students →</a>
+      </div>
+      <div>
+        <h3>A Life in Performance</h3>
+        <p>Founding first violinist of the Arcata String Quartet; Wigmore Hall to Weill
+        Recital Hall; recordings on Equilibrium, Centaur, Albany, Summit &amp; VOX.</p>
+        <a class="m" href="#">Read the biography →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <a href="#">Facebook</a> · <a href="#">Instagram</a> · <a href="#">LinkedIn</a>
+  <span class="pn">· © <script>document.write(new Date().getFullYear())</script> ·</span>
+</footer>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction 1 · Concert Program — Marjorie Bagley mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..600;1,8..60,300..600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f7f3ec;
+  --ink:#2a2626;
+  --burgundy:#5e1a26;
+  --burgundy-deep:#471320;
+  --gold:#bd8f1a;
+  --dim:#6d635c;
+  --hair:#d9d0c3;
+  --display:"Fraunces", Georgia, serif;
+  --body:"Source Serif 4", Georgia, serif;
+}
+*{box-sizing:border-box;margin:0}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:1.0625rem;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--burgundy);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+.wrap{max-width:46rem;margin:0 auto;padding:0 1.25rem}
+
+/* nav */
+nav{padding:1.6rem 0 0;text-align:center}
+nav a{
+  font-family:var(--display);
+  font-size:.78rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--ink);
+  margin:0 .9rem;
+}
+nav a.active{color:var(--burgundy)}
+
+/* hero: printed-program title page */
+header.hero{text-align:center;padding:4.5rem 0 3.6rem}
+.rule{
+  display:flex;align-items:center;justify-content:center;gap:.8rem;
+  color:var(--gold);
+}
+.rule::before,.rule::after{
+  content:"";height:1px;width:6rem;background:var(--gold);opacity:.75;
+}
+.rule span{font-size:.9rem;letter-spacing:.1em}
+h1{
+  font-family:var(--display);
+  font-weight:340;
+  font-variation-settings:"opsz" 130;
+  font-size:clamp(2.9rem,8vw,4.6rem);
+  line-height:1.04;
+  letter-spacing:.01em;
+  margin:1.4rem 0 .4rem;
+  text-wrap:balance;
+}
+h1 .amp{font-style:italic;color:var(--burgundy)}
+.credits{
+  margin-top:1.5rem;
+  display:grid;gap:.35rem;
+  font-size:1rem;color:var(--dim);
+}
+.credits b{color:var(--ink);font-weight:500}
+.credits i{font-style:italic}
+
+/* sections */
+section{padding:2.6rem 0}
+h2{
+  font-family:var(--display);
+  font-weight:400;
+  font-size:1.05rem;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  text-align:center;
+  color:var(--burgundy);
+  margin-bottom:1.9rem;
+}
+h2::after{
+  content:"";display:block;width:3.2rem;height:1px;
+  background:var(--gold);margin:.9rem auto 0;
+}
+
+/* season list, set like a program */
+.season{border-top:1px solid var(--hair)}
+.event{
+  display:grid;
+  grid-template-columns:7.2rem 1fr;
+  gap:1.1rem;
+  padding:1.05rem 0;
+  border-bottom:1px solid var(--hair);
+}
+.event time{
+  font-family:var(--display);
+  font-size:.92rem;
+  letter-spacing:.06em;
+  color:var(--burgundy);
+  text-transform:uppercase;
+  padding-top:.15rem;
+}
+.event h3{font-family:var(--body);font-weight:600;font-size:1.06rem;line-height:1.4}
+.event p{color:var(--dim);font-size:.94rem;margin-top:.15rem}
+.event .tag{
+  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold);
+}
+.soloist h3::after{
+  content:"· soloist";
+  font-family:var(--display);
+  font-style:italic;font-weight:400;
+  color:var(--burgundy);
+  margin-left:.5rem;font-size:.95rem;
+}
+.season-note{
+  text-align:center;color:var(--dim);font-size:.92rem;
+  font-style:italic;margin-top:1.6rem;text-wrap:pretty;
+}
+
+/* two-column prose blocks */
+.duet{
+  display:grid;grid-template-columns:1fr 1fr;gap:2.6rem;
+  border-top:1px solid var(--hair);padding-top:2.4rem;
+}
+.duet h2{text-align:left}
+.duet h2::after{margin:.9rem 0 0}
+.duet p{font-size:.98rem;text-wrap:pretty;color:#3d3733}
+.duet a.more{
+  display:inline-block;margin-top:.8rem;
+  font-family:var(--display);font-size:.8rem;
+  letter-spacing:.2em;text-transform:uppercase;
+}
+@media (max-width:640px){
+  .duet{grid-template-columns:1fr}
+  .event{grid-template-columns:5.4rem 1fr;gap:.8rem}
+}
+
+footer{
+  margin-top:3rem;
+  border-top:1px solid var(--hair);
+  padding:2rem 0 2.6rem;
+  text-align:center;
+  color:var(--dim);
+  font-size:.9rem;
+}
+footer .rule{margin-bottom:1.2rem}
+footer nav{padding:0 0 .8rem}
+</style>
+</head>
+<body>
+<nav>
+  <a class="active" href="#">Home</a><a href="#">Biography</a><a href="#">Studying</a><a href="#">Season</a><a href="#">Contact</a>
+</nav>
+
+<header class="hero wrap">
+  <div class="rule"><span>❦</span></div>
+  <h1>Marjorie Bagley<br><span class="amp">violin</span></h1>
+  <div class="credits">
+    <span><b>Professor of Violin</b> · <i>UNC Greensboro School of Music</i></span>
+    <span><b>Concertmaster</b> · <i>Greensboro Symphony Orchestra</i></span>
+    <span><b>Chamber musician</b> · <i>North Carolina &amp; beyond</i></span>
+  </div>
+</header>
+
+<main class="wrap">
+  <section>
+    <h2>The 2026–27 Season</h2>
+    <div class="season">
+      <div class="event">
+        <time>Oct 3</time>
+        <div>
+          <h3>Symphony Opening Night!</h3>
+          <p>Marquez, Boyer, and Tchaikovsky's Fourth, with pianist Jeffrey Biegel.</p>
+          <span class="tag">GSO Masterworks · Tanger Center</span>
+        </div>
+      </div>
+      <div class="event">
+        <time>Nov 7</time>
+        <div>
+          <h3>Four Seasons Reimagined</h3>
+          <span class="tag">GSO Masterworks · Tanger Center</span>
+        </div>
+      </div>
+      <div class="event soloist">
+        <time>Nov 17</time>
+        <div>
+          <h3>Faculty Recital</h3>
+          <p>An evening of chamber works with UNCG colleagues. <i>(Illustrative entry — shows how a featured/solo appearance is highlighted.)</i></p>
+          <span class="tag">UNCG · Recital Hall</span>
+        </div>
+      </div>
+      <div class="event">
+        <time>Jan 30</time>
+        <div>
+          <h3>The Planets + Star Wars</h3>
+          <p>Holst beside Williams — orbit and hyperspace on one program.</p>
+          <span class="tag">GSO Masterworks · Tanger Center</span>
+        </div>
+      </div>
+      <div class="event">
+        <time>Feb 27</time>
+        <div>
+          <h3>Magical Mozart &amp; Brahms</h3>
+          <span class="tag">GSO Masterworks · Tanger Center</span>
+        </div>
+      </div>
+      <div class="event">
+        <time>May 15</time>
+        <div>
+          <h3>Beethoven's Ninth</h3>
+          <p>The season closes with the Ode to Joy.</p>
+          <span class="tag">GSO Masterworks · Tanger Center</span>
+        </div>
+      </div>
+    </div>
+    <p class="season-note">During the season, Marjorie plays most Greensboro Symphony classical
+    programs as concertmaster; faculty recitals at UNCG and chamber appearances are announced here.</p>
+  </section>
+
+  <section class="duet">
+    <div>
+      <h2>Studying with Marjorie</h2>
+      <p>Marjorie teaches violinists in UNCG's BM, MM, and DMA programs through weekly
+      one-on-one lessons, and coaches student chamber groups. She remains fascinated by
+      the unique qualities of each student, combining violin technique and learning
+      strategies to help them move toward their potential.</p>
+      <a class="more" href="#">For prospective students →</a>
+    </div>
+    <div>
+      <h2>Biography</h2>
+      <p>First violinist and founding member of the Arcata String Quartet, with concerts
+      from Wigmore Hall to Weill Recital Hall; three decades of performances across five
+      continents; recordings on the Equilibrium, Centaur, Albany, Summit, and VOX labels.</p>
+      <a class="more" href="#">Full biography →</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="rule"><span>❦</span></div>
+  <nav><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">LinkedIn</a></nav>
+  © <script>document.write(new Date().getFullYear())</script> Marjorie Bagley
+</footer>
+</body>
+</html>

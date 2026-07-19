@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction 2 · Ivory Editorial — Marjorie Bagley mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Crimson+Pro:ital,wght@0,300..600;1,300..600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#faf8f4;
+  --ink:#1c1a18;
+  --oxblood:#571b1f;
+  --dim:#6e6862;
+  --hair:#e3ded6;
+  --sc:"Playfair Display SC", Georgia, serif;
+  --serif:"Playfair Display", Georgia, serif;
+  --body:"Crimson Pro", Georgia, serif;
+}
+*{box-sizing:border-box;margin:0}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--body);
+  font-size:1.17rem;line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--oxblood);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+.wrap{max-width:40rem;margin:0 auto;padding:0 1.25rem}
+
+/* masthead */
+header.mast{
+  border-bottom:1px solid var(--ink);
+  padding:2.4rem 0 1.1rem;
+  text-align:center;
+}
+.mast h1{
+  font-family:var(--sc);
+  font-weight:400;
+  font-size:clamp(1.7rem,5.4vw,2.6rem);
+  letter-spacing:.14em;
+}
+.mast p{
+  font-style:italic;color:var(--dim);
+  font-size:1.05rem;margin-top:.2rem;
+}
+nav{
+  text-align:center;
+  padding:.8rem 0;
+  border-bottom:1px solid var(--hair);
+}
+nav a{
+  font-family:var(--body);
+  font-variant:small-caps;
+  letter-spacing:.16em;
+  font-size:1rem;
+  color:var(--ink);
+  margin:0 .85rem;
+}
+nav a.active{color:var(--oxblood)}
+
+/* opening */
+.opening{padding:4rem 0 2.4rem;text-align:center}
+.opening p.lede{
+  font-family:var(--serif);
+  font-size:clamp(1.35rem,3.4vw,1.75rem);
+  font-weight:400;
+  line-height:1.42;
+  text-wrap:balance;
+}
+.opening p.lede em{font-style:italic;color:var(--oxblood)}
+.opening .cont{margin-top:1.6rem;color:var(--dim);font-size:1.08rem;text-wrap:pretty}
+
+/* where to hear — prose, not widget */
+section{padding:2.2rem 0}
+h2{
+  font-family:var(--body);
+  font-variant:small-caps;
+  font-weight:600;
+  letter-spacing:.2em;
+  font-size:1.05rem;
+  color:var(--oxblood);
+  text-align:center;
+  margin-bottom:1.4rem;
+}
+h2::before,h2::after{content:"—";color:var(--hair);margin:0 .7rem}
+.hear p{text-wrap:pretty;text-align:center;max-width:34rem;margin:0 auto}
+
+/* season as restrained text list */
+.season{margin-top:1.8rem;border-top:1px solid var(--hair)}
+.srow{
+  display:flex;justify-content:space-between;gap:1.4rem;
+  padding:.85rem .2rem;border-bottom:1px solid var(--hair);
+  align-items:baseline;
+}
+.srow .t{font-size:1.12rem}
+.srow .t i{color:var(--dim);font-size:.98rem}
+.srow time{
+  font-variant:small-caps;letter-spacing:.08em;
+  color:var(--oxblood);white-space:nowrap;font-size:1rem;
+}
+.note{
+  text-align:center;font-style:italic;color:var(--dim);
+  font-size:1rem;margin-top:1.3rem;
+}
+
+/* twin doors */
+.doors{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border:1px solid var(--hair);
+  margin:2.2rem 0;
+}
+.door{padding:1.9rem 1.7rem}
+.door + .door{border-left:1px solid var(--hair)}
+.door h3{
+  font-family:var(--serif);font-weight:500;
+  font-size:1.3rem;margin-bottom:.55rem;
+}
+.door p{font-size:1.05rem;color:#39332e;text-wrap:pretty}
+.door a{
+  display:inline-block;margin-top:.7rem;
+  font-variant:small-caps;letter-spacing:.14em;
+}
+@media (max-width:640px){
+  .doors{grid-template-columns:1fr}
+  .door + .door{border-left:none;border-top:1px solid var(--hair)}
+}
+
+footer{
+  border-top:1px solid var(--ink);
+  margin-top:2.4rem;
+  padding:1.6rem 0 2.4rem;
+  text-align:center;color:var(--dim);font-size:1rem;
+}
+footer a{margin:0 .55rem}
+</style>
+</head>
+<body>
+<header class="mast">
+  <h1>Marjorie Bagley</h1>
+  <p>violinist</p>
+</header>
+<nav>
+  <a class="active" href="#">Home</a><a href="#">Biography</a><a href="#">Studying</a><a href="#">Performances</a><a href="#">Contact</a>
+</nav>
+
+<main class="wrap">
+  <section class="opening">
+    <p class="lede">Professor of Violin at UNC Greensboro, Concertmaster of the
+    Greensboro Symphony, and a chamber musician whose collaborations have reached
+    <em>five continents</em>.</p>
+    <p class="cont">Three decades of performance, from London's Wigmore Hall to Carnegie's
+    Weill Recital Hall — and a teaching studio devoted to helping each violinist
+    move toward their own potential.</p>
+  </section>
+
+  <section class="hear">
+    <h2>Where to hear me</h2>
+    <p>During the season I lead most Greensboro Symphony Masterworks and Pops programs
+    from the concertmaster's chair, give faculty recitals at UNCG, and play chamber music
+    in North Carolina and beyond. Selected dates:</p>
+    <div class="season">
+      <div class="srow"><span class="t">Symphony Opening Night! <i>· GSO Masterworks</i></span><time>Oct 3</time></div>
+      <div class="srow"><span class="t">Four Seasons Reimagined <i>· GSO Masterworks</i></span><time>Nov 7</time></div>
+      <div class="srow"><span class="t">Faculty Recital <i>· UNCG Recital Hall</i></span><time>Nov 17</time></div>
+      <div class="srow"><span class="t">The Planets + Star Wars <i>· GSO Masterworks</i></span><time>Jan 30</time></div>
+      <div class="srow"><span class="t">Beethoven's Ninth <i>· GSO Masterworks</i></span><time>May 15</time></div>
+    </div>
+    <p class="note">The complete calendar, with tickets, lives on the Performances page.</p>
+  </section>
+
+  <section>
+    <div class="doors">
+      <div class="door">
+        <h3>Studying with Marjorie</h3>
+        <p>Violin study at UNCG in the BM, MM, and DMA programs — weekly one-on-one
+        lessons and chamber coaching, for students preparing lives in music.</p>
+        <a href="#">For prospective students</a>
+      </div>
+      <div class="door">
+        <h3>A life in performance</h3>
+        <p>Founding first violinist of the Arcata String Quartet; recordings on the
+        Equilibrium, Centaur, Albany, Summit, and VOX labels.</p>
+        <a href="#">Read the biography</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <a href="#">Facebook</a> · <a href="#">Instagram</a> · <a href="#">LinkedIn</a><br>
+  © <script>document.write(new Date().getFullYear())</script> Marjorie Bagley
+</footer>
+</body>
+</html>

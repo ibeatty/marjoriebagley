@@ -1,22 +1,51 @@
 # To-Do List
 
-## Infrastructure & Process
+*(Restructured July 2026 during the redesign push. See `_RedesignPlan.md` for
+the full plan and `_SetupSveltia.md` for CMS setup steps.)*
 
-- [x] Fixed Jekyll deprecation warnings (updated to Minima 3.0 with modern Sass color functions)
-- [x] Test GitHub Pages build after recent changes (working with GitHub Actions!)
-- [ ] Create GitHub account for M & give shared repo access
+## Ian — infrastructure (one-time manual steps)
 
+- [ ] Sveltia CMS auth: GitHub OAuth app + Cloudflare worker + fill in
+      `base_url` in `admin/config.yml` (walkthrough: `_SetupSveltia.md`)
+- [ ] Create GitHub account for M & invite as repo collaborator
+- [ ] Pick which 2026–27 GSO concerts M is playing and import them:
+      `make scrape`, then `make scrape ARGS="--import …"` (incl. Dragon's
+      Chamber dates — the chamber series is covered now)
+- [ ] Later, after design launch: DreamHost exit / domain cutover
+      (checklist in `_RedesignPlan.md`; hosting is safe to drop — no email
+      on the domain)
 
-## Aesthetics
+## Design
 
-- [ ] Improve appearance on phones
+- [ ] Show Marjorie the five mockups (`_mockups/index.html`) and pick a
+      direction (or a mix)
+- [ ] Implement chosen design as hand-rolled templates (replaces vendored
+      Minima; includes mobile appearance — supersedes old "improve appearance
+      on phones" item)
 
+## Content (needs Marjorie)
 
-## Content
+- [ ] Update M's bio — fill the `XX` placeholders in `bio.md`, approve text
+- [ ] Decide the private-student question flagged in red in `studying.md`
+- [ ] Polish home page intro blurb (draft exists in `index.md`)
+- [ ] Optional: pick recordings/videos for a "Listen" page (see
+      `_RedesignPlan.md`)
 
-- [ ] Update M's bio
-- [ ] Write a home page intro blurb
-- [ ] Write content w/links for the "Studying with Marjorie" page
-- [x] Add GSO Masterworks and Pops event announcements
-- [ ] Add relevant GSO chamber series announcements
+## Done (this push, July 2026)
 
+- [x] Concerts restructured as `_events/` collection with automatic
+      upcoming/past split + weekly rebuild
+- [x] 2016 demo posts deleted; 2024–26 concerts migrated
+- [x] Sveltia CMS wired at `/admin/` (pending auth steps above)
+- [x] GSO scraper rewritten on the Events Calendar REST API with
+      human-choice import
+- [x] `make serve` / `make build` dev wrapper (Homebrew Ruby; Docker no
+      longer assumed)
+- [x] Design research: 14 comparable musicians' sites surveyed
+      (`_DesignResearch.md`)
+- [x] Five design mockups produced (`_mockups/`)
+
+## Done (earlier)
+
+- [x] Fixed Jekyll deprecation warnings (Minima 3.0, modern Sass color functions)
+- [x] GitHub Pages build via GitHub Actions

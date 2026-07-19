@@ -171,20 +171,38 @@ This document outlines maintenance tasks and items to watch for to keep the site
 
 ### Useful Commands
 
+*(Updated July 2026: the Makefile is now the front door — run `make` to see
+targets. Docker is no longer installed/assumed; local builds use Homebrew
+Ruby with gems vendored in `vendor/bundle`.)*
+
 **Test locally:**
 ```bash
-docker run --rm -v "$(pwd):/site" -p 4000:4000 -e JEKYLL_INCREMENTAL=false bretfisher/jekyll-serve jekyll serve --host 0.0.0.0 --watch --force_polling
+make serve        # http://localhost:4000, rebuilds on save
 ```
 
 **Build locally (no server):**
 ```bash
-docker run --rm -v "$(pwd):/site" -e JEKYLL_INCREMENTAL=false bretfisher/jekyll-serve jekyll build
+make build
+```
+
+**First time on a new machine (or after a Homebrew Ruby major upgrade):**
+```bash
+make setup
+```
+
+**Refresh the concert list:**
+```bash
+make scrape       # then: make scrape ARGS="--import 1,3"
 ```
 
 **Check for git changes:**
 ```bash
 git status
 ```
+
+Historical note: the previous Docker-based workflow
+(`docker run … bretfisher/jekyll-serve …`) still works on machines that have
+Docker, but is no longer the documented path.
 
 ### Key URLs
 
