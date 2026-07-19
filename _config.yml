@@ -19,8 +19,27 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
-# Whether to display posts with future dates.
-future: true
+# Concert events live in _events/ as one file per event (see _RedesignPlan.md).
+# Each has front matter: title, date (concert date), series, role?, venue?, url?
+# and an optional blurb as the body. Templates split upcoming/past on the date,
+# so old events age out automatically at build time; a weekly scheduled build
+# in .github/workflows/jekyll.yml keeps that split fresh between pushes.
+collections:
+  events:
+    output: false
+
+# Keep repo plumbing out of the built site. (Underscore-prefixed files are
+# already excluded by Jekyll; these are the rest.)
+exclude:
+  - CLAUDE.md
+  - Makefile
+  - README.md
+  - readme_banner.svg
+  - script/
+  - scripts/
+  - vendor/
+  - Gemfile
+  - Gemfile.lock
 
 # Theme-specific settings
 
@@ -30,6 +49,7 @@ header_pages:
   - index.md
   - bio.md
   - studying.md
+  - events.md
 
 # Set to `true` to show excerpts on the homepage.
 #show_excerpts: false

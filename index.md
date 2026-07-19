@@ -13,5 +13,5 @@ Marjorie Bagley is a Professor of Violin in the [School of Music](https://vpa.un
 
 <hr/>
 
-## Marjorie's Concert Appearances
+## Upcoming Appearances
 

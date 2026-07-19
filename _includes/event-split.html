@@ -1,0 +1,21 @@
+{% comment %}
+  Splits site.events into two arrays visible to the including template:
+    `upcoming` — soonest first; an event stays upcoming through the end of
+                 its concert day (date + 24h), so a same-day concert still shows.
+    `past`     — most recent first.
+  Liquid assigns made inside an include propagate to the including context,
+  so templates can `{% include event-split.html %}` and then use both arrays.
+{% endcomment %}
+{%- assign now_epoch = site.time | date: '%s' | plus: 0 -%}
+{%- assign upcoming = "" | split: "" -%}
+{%- assign past = "" | split: "" -%}
+{%- assign events_by_date = site.events | sort: 'date' -%}
+{%- for event in events_by_date -%}
+  {%- assign event_end = event.date | date: '%s' | plus: 86400 -%}
+  {%- if event_end > now_epoch -%}
+    {%- assign upcoming = upcoming | push: event -%}
+  {%- else -%}
+    {%- assign past = past | push: event -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign past = past | reverse -%}
