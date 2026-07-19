@@ -1,91 +1,51 @@
-# GSO Concert Scraper
-
-This directory contains automation scripts for the Marjorie Bagley website.
+# Site automation scripts
 
 ## scrape_gso_concerts.py
 
-Automatically scrapes concert information from the Greensboro Symphony Orchestra website and creates Jekyll post files.
+Lists upcoming Greensboro Symphony concerts and imports human-chosen ones as
+event files in `_events/`. Marjorie isn't in every GSO event and the listings
+don't say which, so selection is deliberately manual.
 
-### Prerequisites
-
-- [uv](https://docs.astral.sh/uv/) - Fast Python package installer (handles dependencies automatically)
-
-### Usage
-
-From the repository root directory:
+Requires [uv](https://docs.astral.sh/uv/) (dependencies are declared inline
+in the script — nothing to install).
 
 ```bash
-uv run scripts/scrape_gso_concerts.py
+# From the repo root (or `make scrape`):
+uv run scripts/scrape_gso_concerts.py                 # numbered list of upcoming concerts
+uv run scripts/scrape_gso_concerts.py --import 1,3,5  # import those numbers
+uv run scripts/scrape_gso_concerts.py --import all    # import every new one
+uv run scripts/scrape_gso_concerts.py --start 2027-01-01  # look further ahead
 ```
 
-Or make it executable and run directly:
+Already-imported concerts show a `[have]` marker (matched by event URL) and
+are never overwritten.
 
-```bash
-chmod +x scripts/scrape_gso_concerts.py
-./scripts/scrape_gso_concerts.py
-```
+### How it works
 
-No need to install dependencies separately - `uv` handles them automatically using inline script metadata!
+Data comes from the GSO site's Events Calendar REST API
+(`/wp-json/tribe/events/v1/events`) — a standard WordPress-plugin interface,
+much more stable than scraping page HTML. Blurbs aren't included in the API,
+so `--import` also fetches each chosen event's page and extracts the program
+paragraphs (performers, repertoire) as the event body, best-effort.
 
-The script will:
-1. Fetch upcoming concerts from https://greensborosymphony.org/concerts/
-2. Extract concert information (title, date, description, URL)
-3. Create Jekyll post files in `_posts/` directory
-4. Skip concerts that already have posts
+Two quirks encoded in the script:
 
-### Post Format
+- The GSO's web application firewall rejects requests without a browser-like
+  `User-Agent` (returns 406) — hence the header in the script.
+- Category names are sponsor-prefixed ("Bank of Oak Ridge Masterworks");
+  the script maps them onto our series values (`GSO Masterworks`, `GSO Pops`,
+  `GSO Chamber`, `GSO`).
 
-Generated posts follow this format:
+### After importing
 
-```markdown
----
-layout: post
-category: "GSO Masterworks"
-title: "Concert Title"
----
+Review each new file in `_events/` (or in the Sveltia editor at `/admin/`):
 
-Concert description here.
+- Set `role: Soloist` if Marjorie is featured (the scraper can't know).
+- Trim or rewrite the auto-extracted blurb.
+- Then commit and push — the site deploys automatically.
 
-See [the GSO's event page](https://url) for details.
-```
+### If it breaks
 
-### Categories
-
-The script automatically categorizes concerts:
-- **GSO Masterworks** - Classical concerts (contains "masterworks")
-- **GSO Pops** - Popular music concerts (contains "pops")
-- **GSO Masterworks/Solo** - Concertos and solo performances
-- **GSO** - Default for other concerts
-
-### Troubleshooting
-
-**No concerts found:**
-The GSO website structure may have changed. To fix:
-
-1. Open https://greensborosymphony.org/concerts/ in a browser
-2. Inspect the HTML (right-click → Inspect)
-3. Find the CSS selectors for concert elements
-4. Update the `extract_concert_info()` function in the script with new selectors
-
-**Date parsing errors:**
-If concert dates can't be parsed, posts will use the current date. You may need to manually adjust the filename date.
-
-**Duplicate posts:**
-The script skips posts that already exist (based on filename). If you need to regenerate a post, delete the old one first.
-
-### Manual Editing
-
-After running the script, review the generated posts in `_posts/` and:
-- Add more details from the GSO website
-- Fix any date parsing issues
-- Adjust categories if needed
-- Add venue information if available
-
-### Future Improvements
-
-Potential enhancements:
-- Add Playwright support for JavaScript-heavy pages
-- Extract venue information
-- Parse performer names
-- Add concert series/season information
-- Schedule automatic runs (cron/GitHub Actions)
+If the API stops responding, the GSO likely changed WordPress plugins or
+their firewall rules. Check `https://greensborosymphony.org/wp-json/tribe/events/v1/events`
+in a browser; adjust `API`/`HEADERS` in the script accordingly.

@@ -2,219 +2,211 @@
 # /// script
 # dependencies = [
 #   "requests>=2.31.0",
-#   "beautifulsoup4>=4.12.0",
 # ]
 # ///
 """
-Scrape Greensboro Symphony Orchestra concerts and create Jekyll posts.
+List upcoming Greensboro Symphony concerts and import chosen ones as events.
 
-This script fetches concert information from the GSO website and generates
-markdown files in the _posts directory for the Jekyll site.
+Marjorie isn't in every GSO event (and the listings don't say), so importing
+is deliberately human-driven: run with no arguments to see a numbered list,
+then rerun with --import to create files in _events/ for the ones she's
+playing. Review them afterwards (locally, or in the Sveltia editor at
+/admin/) — especially to set `role: Soloist` where deserved and to trim the
+auto-extracted blurb.
 
-Usage:
-    uv run scripts/scrape_gso_concerts.py
+Usage (from the repo root, or via `make scrape`):
+    uv run scripts/scrape_gso_concerts.py                 # list upcoming concerts
+    uv run scripts/scrape_gso_concerts.py --import 1,3,5  # import those numbers
+    uv run scripts/scrape_gso_concerts.py --import all    # import everything new
+    uv run scripts/scrape_gso_concerts.py --start 2027-01-01   # look further out
 
-Or simply:
-    ./scripts/scrape_gso_concerts.py
+Data comes from the site's Events Calendar REST API
+(/wp-json/tribe/events/v1/events) — a stable WordPress-plugin interface, far
+less likely to break than HTML scraping. Concert blurbs aren't in the API, so
+--import additionally fetches each chosen event's page and extracts the
+program/description paragraphs as the event body (best effort; edit after).
 """
+
+import argparse
+import html
+import re
+import sys
+from datetime import date
+from pathlib import Path
 
 import requests
-from bs4 import BeautifulSoup
-from datetime import datetime
-import re
-import os
-import sys
 
-# Base URL for GSO website
-GSO_BASE_URL = "https://greensborosymphony.org"
-GSO_CONCERTS_URL = f"{GSO_BASE_URL}/concerts/"
+BASE = "https://greensborosymphony.org"
+API = f"{BASE}/wp-json/tribe/events/v1/events"
+# The GSO's WAF rejects requests without a browser-like User-Agent.
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/126.0 Safari/537.36"
+    )
+}
 
-def fetch_concerts():
-    """Fetch the concerts page and parse it."""
-    print(f"Fetching concerts from {GSO_CONCERTS_URL}...")
+REPO_ROOT = Path(__file__).resolve().parent.parent
+EVENTS_DIR = REPO_ROOT / "_events"
 
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'
-    }
+# Venue names as they should appear on the site (API name -> short form).
+VENUE_MAP = {
+    "Steven Tanger Center for the Performing Arts": "Tanger Center, Greensboro NC",
+}
 
+
+def series_for(categories):
+    """Map GSO category names (often sponsor-prefixed) onto our series values."""
+    joined = " ".join(c.get("name", "") for c in categories).lower()
+    if "masterworks" in joined:
+        return "GSO Masterworks"
+    if "pops" in joined:
+        return "GSO Pops"
+    if "chamber" in joined:
+        return "GSO Chamber"
+    return "GSO"
+
+
+def fetch_events(start):
+    """Fetch all events from `start` onward, following API pagination."""
+    events, page, total_pages = [], 1, 1
+    while page <= total_pages:
+        resp = requests.get(
+            API,
+            params={"start_date": start, "per_page": 50, "page": page},
+            headers=HEADERS,
+            timeout=30,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        total_pages = data.get("total_pages", 1)
+        for e in data.get("events", []):
+            slug = e["url"].rstrip("/").rsplit("/", 1)[-1]
+            venue = (e.get("venue") or {}).get("venue", "")
+            events.append(
+                {
+                    "date": e["start_date"][:10],
+                    "title": html.unescape(e["title"]).strip(),
+                    "series": series_for(e.get("categories", [])),
+                    "venue": VENUE_MAP.get(venue, venue),
+                    "url": e["url"],
+                    "slug": slug,
+                }
+            )
+        page += 1
+    events.sort(key=lambda e: e["date"])
+    return events
+
+
+def known_urls():
+    """Event URLs already present in _events/ front matter."""
+    urls = set()
+    for f in EVENTS_DIR.glob("*.md"):
+        m = re.search(r"^url:\s*(\S+)", f.read_text(encoding="utf-8"), re.M)
+        if m:
+            urls.add(m.group(1).rstrip("/"))
+    return urls
+
+
+def extract_blurb(event_url):
+    """Best-effort: pull program/description paragraphs from the event page."""
     try:
-        response = requests.get(GSO_CONCERTS_URL, headers=headers, timeout=10)
-        response.raise_for_status()
-        return BeautifulSoup(response.content, 'html.parser')
-    except requests.RequestException as e:
-        print(f"Error fetching concerts: {e}")
-        sys.exit(1)
+        resp = requests.get(event_url, headers=HEADERS, timeout=30)
+        resp.raise_for_status()
+    except requests.RequestException:
+        return ""
+    page = resp.text
+    blurb_paras = []
+    for para in re.findall(r"<p[^>]*>(.*?)</p>", page, re.S):
+        para = re.sub(r"<br\s*/?>", "\n", para)
+        text = html.unescape(re.sub(r"<[^>]+>", "", para))
+        # <br>-separated program lines would collapse in Markdown anyway;
+        # join them with a middle dot, which reads well inline.
+        text = " · ".join(
+            line.strip() for line in text.splitlines() if line.strip()
+        )
+        # Skip navigation menus and boilerplate that WordPress wraps in <p>.
+        if len(text) < 40 or "View All Concerts" in text:
+            continue
+        blurb_paras.append(text)
+        if len(blurb_paras) == 2:
+            break
+    return "\n\n".join(blurb_paras)
 
-def extract_concert_info(soup):
-    """Extract concert information from the parsed HTML."""
-    concerts = []
 
-    # Try to find concert listings - adjust selectors based on actual HTML structure
-    # These are common patterns, but may need adjustment
-    concert_elements = soup.select('.event, .concert-item, article, .tribe-events-list-event-row')
+def write_event(ev, blurb):
+    lines = ["---"]
+    lines.append(f'title: "{ev["title"]}"')
+    lines.append(f"date: {ev['date']}")
+    lines.append(f"series: {ev['series']}")
+    if ev["venue"]:
+        lines.append(f"venue: {ev['venue']}")
+    lines.append(f"url: {ev['url']}")
+    lines.append("---")
+    body = (blurb + "\n") if blurb else ""
+    dest = EVENTS_DIR / f"{ev['date']}-{ev['slug']}.md"
+    dest.write_text("\n".join(lines) + "\n\n" + body, encoding="utf-8")
+    return dest
 
-    if not concert_elements:
-        print("Warning: No concert elements found with standard selectors.")
-        print("The page structure may have changed. Manual inspection needed.")
-        return concerts
-
-    for element in concert_elements:
-        concert = {}
-
-        # Try various selectors for title
-        title_elem = (element.select_one('h2, h3, .event-title, .tribe-events-list-event-title') or
-                     element.select_one('a[href*="/event/"]'))
-        if title_elem:
-            concert['title'] = title_elem.get_text(strip=True)
-            # Get event URL if available
-            link = title_elem.find('a') if title_elem.name != 'a' else title_elem
-            if link and link.get('href'):
-                concert['url'] = link['href']
-                if not concert['url'].startswith('http'):
-                    concert['url'] = GSO_BASE_URL + concert['url']
-
-        # Try to find date
-        date_elem = element.select_one('.event-date, .tribe-event-date-start, time')
-        if date_elem:
-            concert['date_text'] = date_elem.get_text(strip=True)
-            # Try to parse datetime attribute if available
-            if date_elem.has_attr('datetime'):
-                concert['datetime'] = date_elem['datetime']
-
-        # Try to find description
-        desc_elem = element.select_one('.event-description, .tribe-events-list-event-description, p')
-        if desc_elem:
-            concert['description'] = desc_elem.get_text(strip=True)
-
-        # Try to find category/series
-        category_elem = element.select_one('.event-category, .tribe-events-event-categories')
-        if category_elem:
-            concert['category'] = category_elem.get_text(strip=True)
-
-        if concert.get('title'):  # Only add if we found at least a title
-            concerts.append(concert)
-
-    return concerts
-
-def slugify(text):
-    """Convert text to URL-friendly slug."""
-    text = text.lower()
-    text = re.sub(r'[^\w\s-]', '', text)
-    text = re.sub(r'[-\s]+', '-', text)
-    return text.strip('-')
-
-def parse_concert_date(concert):
-    """Try to parse a date from the concert information."""
-    # Try to parse from datetime attribute first
-    if 'datetime' in concert:
-        try:
-            return datetime.fromisoformat(concert['datetime'].replace('Z', '+00:00'))
-        except:
-            pass
-
-    # Try to parse from date text
-    if 'date_text' in concert:
-        date_text = concert['date_text']
-        # Try common date formats
-        for fmt in ['%B %d, %Y', '%b %d, %Y', '%m/%d/%Y', '%Y-%m-%d']:
-            try:
-                return datetime.strptime(date_text, fmt)
-            except ValueError:
-                continue
-
-    # Default to current date if we can't parse
-    print(f"Warning: Could not parse date for '{concert.get('title', 'Unknown')}', using current date")
-    return datetime.now()
-
-def create_post(concert, posts_dir):
-    """Create a Jekyll post file from concert information."""
-    # Parse date for filename
-    concert_date = parse_concert_date(concert)
-    date_str = concert_date.strftime('%Y-%m-%d')
-
-    # Create slug from title
-    slug = slugify(concert['title'])
-    filename = f"{date_str}-{slug}.md"
-    filepath = os.path.join(posts_dir, filename)
-
-    # Check if post already exists
-    if os.path.exists(filepath):
-        print(f"  Skipping {filename} (already exists)")
-        return False
-
-    # Determine category
-    title = concert['title'].lower()
-    if 'masterworks' in title:
-        category = 'GSO Masterworks'
-    elif 'pops' in title:
-        category = 'GSO Pops'
-    elif 'solo' in title or 'concerto' in title:
-        category = 'GSO Masterworks/Solo'
-    else:
-        category = concert.get('category', 'GSO')
-
-    # Create post content
-    content = f"""---
-layout: post
-category: "{category}"
-title: "{concert['title']}"
----
-
-"""
-
-    # Add description if available
-    if 'description' in concert:
-        content += f"{concert['description']}\n\n"
-
-    # Add link to event page
-    if 'url' in concert:
-        content += f"See [the GSO's event page]({concert['url']}) for details.\n"
-
-    # Write the file
-    with open(filepath, 'w') as f:
-        f.write(content)
-
-    print(f"  Created {filename}")
-    return True
 
 def main():
-    """Main function to scrape concerts and create posts."""
-    # Determine posts directory
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    repo_dir = os.path.dirname(script_dir)
-    posts_dir = os.path.join(repo_dir, '_posts')
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--start", default=date.today().isoformat(),
+                    help="earliest date to list (YYYY-MM-DD, default today)")
+    ap.add_argument("--import", dest="imports", metavar="N,M|all",
+                    help="import these list numbers ('all' = every new one)")
+    args = ap.parse_args()
 
-    if not os.path.exists(posts_dir):
-        print(f"Error: _posts directory not found at {posts_dir}")
-        sys.exit(1)
+    print(f"Fetching GSO events from {args.start} on …")
+    events = fetch_events(args.start)
+    if not events:
+        print("No events returned — check the site or try an earlier --start.")
+        return 1
 
-    print("=" * 60)
-    print("GSO Concert Scraper")
-    print("=" * 60)
+    have = known_urls()
+    for e in events:
+        e["have"] = e["url"].rstrip("/") in have
 
-    # Fetch and parse concerts
-    soup = fetch_concerts()
-    concerts = extract_concert_info(soup)
+    width = max(len(e["title"]) for e in events)
+    for i, e in enumerate(events, 1):
+        mark = "have" if e["have"] else "    "
+        print(f"{i:3}. [{mark}] {e['date']}  {e['title']:<{width}}  {e['series']}")
 
-    if not concerts:
-        print("\nNo concerts found!")
-        print("\nThe website structure may have changed.")
-        print("Please open the GSO concerts page in a browser and inspect")
-        print("the HTML to update the selectors in this script.")
-        sys.exit(1)
+    if not args.imports:
+        print("\nNothing imported. Rerun with --import N,M (or --import all) "
+              "for the concerts Marjorie is playing.")
+        return 0
 
-    print(f"\nFound {len(concerts)} concerts")
-    print("-" * 60)
+    if args.imports.strip().lower() == "all":
+        chosen = [e for e in events if not e["have"]]
+    else:
+        try:
+            idxs = [int(n) for n in args.imports.replace(" ", "").split(",")]
+        except ValueError:
+            print(f"Couldn't parse --import '{args.imports}' — use e.g. 1,3,5 or all.")
+            return 1
+        bad = [n for n in idxs if not 1 <= n <= len(events)]
+        if bad:
+            print(f"Out-of-range number(s): {bad} (list has {len(events)} entries).")
+            return 1
+        chosen = [events[n - 1] for n in idxs]
 
-    # Create posts
-    created_count = 0
-    for concert in concerts:
-        if create_post(concert, posts_dir):
-            created_count += 1
+    imported = 0
+    for e in chosen:
+        if e["have"]:
+            print(f"skip (already have): {e['title']}")
+            continue
+        blurb = extract_blurb(e["url"])
+        dest = write_event(e, blurb)
+        imported += 1
+        print(f"wrote {dest.relative_to(REPO_ROOT)}"
+              + ("" if blurb else "   (no blurb found — add one by hand)"))
 
-    print("-" * 60)
-    print(f"\nSummary: Created {created_count} new posts")
-    print("=" * 60)
+    if imported:
+        print(f"\n{imported} event(s) imported. Review them (role/blurb/venue), "
+              "then commit and push — or edit further in Sveltia at /admin/.")
+    return 0
 
-if __name__ == '__main__':
-    main()
+
+if __name__ == "__main__":
+    sys.exit(main())
