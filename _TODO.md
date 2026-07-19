@@ -17,7 +17,7 @@ the full plan and `_SetupSveltia.md` for CMS setup steps.)*
 
 ## Design
 
-- [ ] Show Marjorie the mockups (`_mockups/index.html`) and pick a direction
+- [ ] Show Marjorie the mockups (`mockups/index.html`) and pick a direction
       (or a mix). Ian's first impressions (Jul 2026): #5 Piedmont Dusk has the
       most immediate positive impact (→ variant 5b adds the 1703 violin photo);
       #1/#2/#4 cluster too closely → wider-net additions #6 Nocturne,
@@ -48,7 +48,7 @@ the full plan and `_SetupSveltia.md` for CMS setup steps.)*
       longer assumed)
 - [x] Design research: 14 comparable musicians' sites surveyed
       (`_DesignResearch.md`)
-- [x] Five design mockups produced (`_mockups/`)
+- [x] Five design mockups produced (`mockups/`)
 
 ## Done (earlier)
 

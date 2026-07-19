@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A Jekyll static site — a professional website for violinist Marjorie Bagley (Professor of Violin at UNCG, Concertmaster of the Greensboro Symphony Orchestra). Ian Beatty (her husband) maintains it on her behalf. It builds and deploys to GitHub Pages via GitHub Actions. Live at https://ibeatty.github.io/marjoriebagley/.
 
-**See `_RedesignPlan.md`** for the active redesign plan: content model, IA, stack/CMS research findings, and the DreamHost-exit checklist. **`_DesignResearch.md`** holds the comparable-musician survey (conventions, staleness traps, the five design directions). **`_mockups/`** contains five self-contained homepage mockups for Marjorie's review — open `_mockups/index.html` in a browser. **`_SetupSveltia.md`** has Ian's remaining manual CMS-auth steps.
+**See `_RedesignPlan.md`** for the active redesign plan: content model, IA, stack/CMS research findings, and the DreamHost-exit checklist. **`_DesignResearch.md`** holds the comparable-musician survey (conventions, staleness traps, the five design directions). **`mockups/`** contains five self-contained homepage mockups for Marjorie's review — open `mockups/index.html` in a browser. **`_SetupSveltia.md`** has Ian's remaining manual CMS-auth steps.
 
 ## Project context & current goals
 

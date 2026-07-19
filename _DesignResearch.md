@@ -2,7 +2,7 @@
 
 *July 2026. Survey of 14 personal sites of concertmaster/professor hybrids,
 university violin faculty, chamber musicians, and (for contrast) star
-soloists, to inform the redesign mockups in `_mockups/`. Summary — details
+soloists, to inform the redesign mockups in `mockups/`. Summary — details
 were gathered live from each site.*
 
 ## Sites examined

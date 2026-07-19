@@ -3,8 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Direction 5 · Piedmont Dusk — Marjorie Bagley mockup</title>
-<!-- mockup — see index.html for the full set -->
+<meta name="robots" content="noindex">
+<title>Direction 5b · Piedmont Dusk, with the 1703 violin — Marjorie Bagley mockup</title>
+<!-- mockup — see index.html for the full set. Variant of #5 working in the
+     photo of Marjorie's actual instrument (made 1703): white-background photo
+     + mix-blend-mode:multiply = the violin sits on the cream sheet like a
+     printed plate, no clipping or editing needed. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Alegreya+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
@@ -84,6 +88,28 @@ main{position:relative;padding-bottom:2rem}
 }
 @media (max-width:600px){.sheet{padding:1.8rem 1.3rem}}
 
+/* the instrument, as a printed plate on the sheet */
+.plate{
+  margin:.2rem 0 2.2rem;
+  text-align:center;
+}
+.plate img{
+  display:block;
+  width:100%;
+  height:auto;
+  mix-blend-mode:multiply;          /* white photo ground melts into the cream */
+  filter:saturate(1.04) contrast(1.01);
+}
+.plate figcaption{
+  margin-top:.9rem;
+  font-family:var(--sans);
+  font-size:.8rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--sage);
+}
+.plate figcaption b{color:var(--terra);font-weight:700}
+
 h2{
   font-family:var(--sans);
   font-size:.85rem;font-weight:700;
@@ -157,6 +183,11 @@ footer a{color:var(--cream);margin:0 .6rem}
 
 <main class="wrap">
   <div class="sheet">
+    <figure class="plate">
+      <img src="../images/cropped-header_violin.jpg"
+           alt="Side view of Marjorie's violin: flamed maple ribs, amber varnish, an f-hole catching the light">
+      <figcaption>Her instrument · made in <b>1703</b> · three centuries of voice</figcaption>
+    </figure>
     <h2>The 2026–27 Season <em>· selected dates</em></h2>
     <div class="event"><time>Oct 3</time><div><span class="t">Symphony Opening Night!</span><span class="s">GSO Masterworks · Tanger Center</span></div></div>
     <div class="event"><time>Nov 7</time><div><span class="t">Four Seasons Reimagined</span><span class="s">GSO Masterworks · Tanger Center</span></div></div>
