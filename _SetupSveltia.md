@@ -36,12 +36,21 @@ it only runs for a moment at sign-in).
 1. Create a free Cloudflare account if you don't have one.
 2. Go to <https://github.com/sveltia/sveltia-cms-auth> and click the
    **Deploy to Cloudflare Workers** button in the README; follow the flow
-   (it forks the repo and deploys).
-3. In the Worker's **Settings → Variables**, add:
+   (it copies the repo under your GitHub account and deploys). The form's
+   prefilled defaults are all correct — Git account `ibeatty`, project name
+   `sveltia-cms-auth`, empty build command, `pnpm run deploy` — and the
+   "private repository" checkbox is cosmetic (secrets never live in that
+   repo). Just click **Deploy**.
+3. In the Worker's **Settings → Variables and Secrets**, add:
    - `GITHUB_CLIENT_ID` — from step 1
-   - `GITHUB_CLIENT_SECRET` — from step 1 (encrypt/secret type)
+   - `GITHUB_CLIENT_SECRET` — from step 1 (type: Secret)
    - `ALLOWED_DOMAINS` — `ibeatty.github.io, marjoriebagley.com`
-4. Note the Worker URL, e.g. `https://sveltia-cms-auth.<account>.workers.dev`.
+
+   ⚠️ Variables only take effect on the NEXT deploy — after saving them,
+   hit the redeploy/Deploy button the Variables screen offers. ("I set the
+   secrets but sign-in still fails" almost always means this was skipped.)
+4. Note the Worker URL, e.g. `https://sveltia-cms-auth.<account>.workers.dev`
+   (shown on the Worker's overview page).
 
 ## 3. Connect the pieces
 
