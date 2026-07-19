@@ -44,7 +44,10 @@ it only runs for a moment at sign-in).
 3. In the Worker's **Settings → Variables and Secrets**, add:
    - `GITHUB_CLIENT_ID` — from step 1
    - `GITHUB_CLIENT_SECRET` — from step 1 (type: Secret)
-   - `ALLOWED_DOMAINS` — `ibeatty.github.io, marjoriebagley.com`
+   - `ALLOWED_DOMAINS` — `ibeatty.github.io, marjoriebagley.com, ianbeatty.com`
+     (the last one because Ian's user-site custom domain fronts all his
+     project sites: the staging site actually serves at
+     `ianbeatty.com/marjoriebagley/`, and Sveltia reports that domain)
 
    ⚠️ Variables only take effect on the NEXT deploy — after saving them,
    hit the redeploy/Deploy button the Variables screen offers. ("I set the

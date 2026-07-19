@@ -9,8 +9,10 @@ backend:
   # URL of the deployed sveltia-cms-auth Cloudflare Worker (see _SetupSveltia.md).
   base_url: https://sveltia-cms-auth.ian-8b3.workers.dev
 
-site_url: https://ibeatty.github.io/marjoriebagley
-display_url: https://ibeatty.github.io/marjoriebagley
+# The staging site's canonical address: Ian's user-site custom domain covers
+# project sites too (ibeatty.github.io/... redirects here).
+site_url: https://ianbeatty.com/marjoriebagley
+display_url: https://ianbeatty.com/marjoriebagley
 
 media_folder: images/uploads
 public_folder: /images/uploads
