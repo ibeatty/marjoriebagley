@@ -34,9 +34,12 @@ This document outlines maintenance tasks and items to watch for to keep the site
 
 ## Items to Watch For
 
-### 1. Sass @import Deprecation (Medium Priority)
+### 1. Sass @import Deprecation — RETIRED July 2026
 
-**Status:** Currently using deprecated `@import` syntax (still works, just warns)
+**Status:** RESOLVED — the site no longer uses Sass at all. Styles are one
+plain-CSS file (`assets/css/main.css`). This section is kept for history only.
+
+Original notes (obsolete):
 
 **Timeline:** Will break when Dart Sass 3.0 is released (1-2 years away, not yet scheduled)
 
@@ -85,9 +88,12 @@ This document outlines maintenance tasks and items to watch for to keep the site
 **File affected:**
 - `Gemfile`
 
-### 4. Minima Theme Updates (Medium Priority)
+### 4. Minima Theme Updates — RETIRED July 2026
 
-**Status:** Using local copy of Minima 3.0.dev (unreleased)
+**Status:** RESOLVED — the vendored Minima theme was deleted; templates are
+hand-rolled (`_layouts/`, 3 files + 3 includes). Nothing to track upstream.
+
+Original notes (obsolete):
 
 **What to watch:**
 - Official Minima 3.0 stable release
@@ -166,8 +172,8 @@ This document outlines maintenance tasks and items to watch for to keep the site
 - **`_config.yml`** - Main Jekyll configuration
 - **`Gemfile`** - Ruby gem dependencies and versions
 - **`.github/workflows/jekyll.yml`** - GitHub Actions deployment workflow
-- **`_sass/minima/skins/auto.scss`** - Contains your modern Sass color function fixes
-- **`SETUP_NOTES.md`** - Detailed explanation of current setup and recent changes
+- **`assets/css/main.css`** - All styles; the palette token block is at the top
+- **`_SETUP_NOTES.md`** - Historical explanation of the earlier Minima setup
 
 ### Useful Commands
 

@@ -1,28 +1,30 @@
 {% comment %}
-  Renders a list of concert events.
+  Renders a list of concert events in the site's standard markup.
   Parameters:
     include.events      — array of event documents (from event-split.html)
-    include.show_blurbs — if true, render each event's body content
+    include.show_blurbs — if truthy, render each event's body content
 {% endcomment %}
-<ul class="post-list event-list">
-  {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+<ul class="event-list">
+  {%- assign date_format = site.date_format | default: "%b %-d, %Y" -%}
   {%- for event in include.events -%}
   <li>
-    <span class="post-meta">
-      {{ event.date | date: date_format }}
-      {%- if event.series %} — {{ event.series }}{% endif -%}
-      {%- if event.role %} — featuring Marjorie as {{ event.role | downcase }}{% endif -%}
-    </span>
-    <h3 class="post-list-headline">
-      {%- if event.url -%}
-      <a class="post-link" href="{{ event.url }}">{{ event.title | escape }}</a>
-      {%- else -%}
-      {{ event.title | escape }}
+    <time datetime="{{ event.date | date: '%Y-%m-%d' }}">{{ event.date | date: date_format }}</time>
+    <div>
+      <span class="event-title">
+        {%- if event.url -%}
+        <a href="{{ event.url }}">{{ event.title | escape }}</a>
+        {%- else -%}
+        {{ event.title | escape }}
+        {%- endif -%}
+        {%- if event.role %}<span class="event-role">· {{ event.role | downcase }}</span>{% endif -%}
+      </span>
+      <span class="event-meta">
+        {{ event.series }}{% if event.venue %} · {{ event.venue }}{% endif %}
+      </span>
+      {%- if include.show_blurbs and event.content and event.content != "" -%}
+      <div class="event-blurb">{{ event.content }}</div>
       {%- endif -%}
-    </h3>
-    {%- if include.show_blurbs -%}
-      {{ event.content }}
-    {%- endif -%}
+    </div>
   </li>
   {%- endfor -%}
 </ul>

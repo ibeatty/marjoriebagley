@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Studying with Marjorie
+nav_title: Studying
 permalink: /studying/
 ---
 

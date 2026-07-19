@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Biographical Sketch
+nav_title: Bio
 permalink: /bio/
 ---
 

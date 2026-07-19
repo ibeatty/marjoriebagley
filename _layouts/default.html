@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- seo -%}
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="icon" type="image/png" href="{{ '/images/favicon-96x96.png' | relative_url }}" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="{{ '/images/favicon.svg' | relative_url }}">
+  <link rel="shortcut icon" href="{{ '/images/favicon.ico' | relative_url }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/images/apple-touch-icon.png' | relative_url }}">
+  <meta name="apple-mobile-web-app-title" content="Marjorie Bagley">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-title" href="{{ '/' | relative_url }}">Marjorie Bagley</a>
+      <nav class="site-nav" aria-label="Site">
+        {%- for path in site.header_pages -%}
+          {%- assign p = site.pages | where: "path", path | first -%}
+          {%- if p -%}
+            <a href="{{ p.url | relative_url }}"{% if page.url == p.url %} aria-current="page"{% endif %}>{{ p.nav_title | default: p.title }}</a>
+          {%- endif -%}
+        {%- endfor -%}
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© {{ site.time | date: "%Y" }} Marjorie Bagley</span>
+      <span>
+        {%- for s in site.socials -%}
+          <a href="{{ s.url }}">{{ s.label }}</a>
+        {%- endfor -%}
+      </span>
+    </div>
+  </footer>
+</body>
+</html>

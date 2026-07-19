@@ -6,14 +6,17 @@
 > with migrated concerts, upcoming/past templates, weekly cron rebuild,
 > Makefile dev wrapper, Sveltia CMS at `/admin/` (auth steps pending — see
 > `_SetupSveltia.md`), REST-API-based scraper with human-choice import.
-> Phase 3 research is done (`_DesignResearch.md`) and NINE mockups await
-> Marjorie's review (`mockups/index.html`): the original five, a violin-photo
-> variant of front-runner #5 Piedmont Dusk (Ian's first impression, Jul 2026),
-> and three wider-net directions (#6 Nocturne dark/amber, #7 Folio left-rail,
-> #8 Overture indigo/ochre color-blocked) added after Ian observed #1/#2/#4
-> clustered on the same warm-paper-serif theme. Remaining: Ian's manual steps
-> in `_TODO.md`, design choice, then Phase 4 (implement chosen design as
-> hand-rolled templates) and Phase 5 (content + DreamHost cutover).
+> Phase 3 research is done (`_DesignResearch.md`); twelve mockups live at
+> `mockups/index.html` (staging URL shareable with Marjorie). **Phase 4 is
+> BUILT (July 19, 2026): the real site now runs hand-rolled "Conservatory
+> Modern"-layout templates** — Minima and Sass deleted; one plain-CSS file
+> with the palette isolated as tokens (recoloring after Marjorie's verdict is
+> a ~9-line edit); self-hosted fonts; season-grouped events page; evergreen
+> empty states. Layout per Ian's decision; color scheme explicitly provisional.
+> Remaining: Marjorie's design/color verdict (mockups stay up for her),
+> Ian's manual steps in `_TODO.md` (Sveltia auth, concert picks, content),
+> then Phase 5 (content + DreamHost cutover). Mockups directory gets deleted
+> at launch.
 
 ## Guiding constraints (from project goals)
 

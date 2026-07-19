@@ -24,9 +24,12 @@ the full plan and `_SetupSveltia.md` for CMS setup steps.)*
       #7 Folio, #8 Overture
 - [ ] Verify the violin's year (caption in 5b says 1703, per Ian's
       recollection) with Marjorie before launch
-- [ ] Implement chosen design as hand-rolled templates (replaces vendored
-      Minima; includes mobile appearance — supersedes old "improve appearance
-      on phones" item)
+- [x] Implement hand-rolled templates (Conservatory Modern layout, per Ian
+      Jul 19 2026; replaced vendored Minima + Sass entirely; mobile looks
+      good — supersedes old "improve appearance on phones" item)
+- [ ] Recolor per Marjorie's verdict: edit the token block at the top of
+      `assets/css/main.css` (~9 custom properties; nothing else changes)
+- [ ] After launch decision: delete the `mockups/` directory
 
 ## Content (needs Marjorie)
 

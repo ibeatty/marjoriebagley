@@ -1,30 +1,80 @@
 ---
-layout: base
+layout: default
 ---
+{%- comment -%}
+  Home page, "Conservatory Modern": split hero (type left, portrait right),
+  intro prose from index.md's body, three role cards, then the season strip.
+  The hero headline and role lines are design furniture and live here; the
+  editable intro paragraph lives in index.md (editable in Sveltia).
+{%- endcomment -%}
 
-{%- include navbar.html -%}
+<section class="hero wrap">
+  <div>
+    <h1>Violinist.<br><b>Professor. Concertmaster.</b></h1>
+    <div class="hero-roles">
+      <span><b>Teach</b> Professor of Violin, UNC Greensboro School of Music</span>
+      <span><b>Lead</b> Concertmaster, Greensboro Symphony Orchestra</span>
+      <span><b>Play</b> Chamber music across North Carolina and beyond</span>
+    </div>
+    <div class="hero-intro prose">
+      {{ content }}
+    </div>
+  </div>
+  <div class="hero-portrait"
+       style="background-image:url('{{ '/images/MarjorieBagley-4x6_300dpi-200x300.jpg' | relative_url }}')"
+       role="img" aria-label="Portrait of Marjorie Bagley with her violin"></div>
+</section>
 
-<div><img src="images/cropped-header_violin.jpg" alt="side view of violin"/></div>
+<section class="cards wrap">
+  <div class="card">
+    <h2>The Studio</h2>
+    <h3>Studying with Marjorie</h3>
+    <p>One-on-one violin study in UNCG's BM, MM, and DMA programs, plus chamber
+    coaching — for students preparing lives in music.</p>
+    <a href="{{ '/studying/' | relative_url }}">Prospective students →</a>
+  </div>
+  <div class="card">
+    <h2>The Orchestra</h2>
+    <h3>Leading the GSO</h3>
+    <p>As concertmaster, Marjorie anchors the Greensboro Symphony's Masterworks
+    and Pops seasons at the Tanger Center.</p>
+    <a href="{{ '/events/' | relative_url }}">This season →</a>
+  </div>
+  <div class="card">
+    <h2>Chamber Music</h2>
+    <h3>In close company</h3>
+    <p>From a decade with the Arcata String Quartet to ongoing collaborations,
+    exploring classic and contemporary repertoire.</p>
+    <a href="{{ '/bio/' | relative_url }}">Biography →</a>
+  </div>
+</section>
 
-<div class="home">
-
-  {{ content }}
-
-  {%- include event-split.html -%}
-
-  {%- if upcoming.size > 0 -%}
-    {% include event-list.html events=upcoming show_blurbs=false %}
-  {%- else -%}
-    {%- comment -%}
-      Evergreen prose, never an empty widget: this stays true and fresh-looking
-      even if no dates are listed for months (e.g. over the summer).
-    {%- endcomment -%}
-    <p>During the season, Marjorie performs in most Greensboro Symphony
-    Masterworks and Pops programs as concertmaster, appears in faculty
-    recitals at UNCG, and plays chamber music in North Carolina and beyond.
-    Dates for the coming season appear here as they are announced.</p>
-  {%- endif -%}
-
-  <p><a href="{{ "/events/" | relative_url }}">All performances, including past seasons →</a></p>
-
-</div>
+<section class="season-strip">
+  <div class="wrap">
+    {%- include event-split.html -%}
+    {%- if upcoming.size > 0 -%}
+      <h2>Upcoming · selected dates</h2>
+      <ul>
+        {%- assign date_format = "%b %-d" -%}
+        {%- for event in upcoming -%}
+        <li>
+          <time datetime="{{ event.date | date: '%Y-%m-%d' }}">{{ event.date | date: date_format }}</time>
+          <span class="event-title">{%- if event.url -%}<a href="{{ event.url }}">{{ event.title | escape }}</a>{%- else -%}{{ event.title | escape }}{%- endif -%}</span>
+          <span class="event-meta">{{ event.series }}</span>
+        </li>
+        {%- endfor -%}
+      </ul>
+      <p class="strip-note">During the season, Marjorie plays most Greensboro Symphony
+      classical programs as concertmaster. <a href="{{ '/events/' | relative_url }}">Full
+      season and past performances →</a></p>
+    {%- else -%}
+      {%- comment -%} Evergreen fallback — never an empty widget. {%- endcomment -%}
+      <h2>Where to hear Marjorie</h2>
+      <p class="strip-note">During the season, Marjorie performs in most Greensboro
+      Symphony Masterworks and Pops programs as concertmaster, appears in faculty
+      recitals at UNCG, and plays chamber music in North Carolina and beyond.
+      Dates appear here as they are announced —
+      <a href="{{ '/events/' | relative_url }}">past performances →</a></p>
+    {%- endif -%}
+  </div>
+</section>

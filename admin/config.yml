@@ -93,6 +93,7 @@ collections:
         fields:
           - { name: layout, widget: hidden, default: page }
           - { name: title, label: Page title, widget: string }
+          - { name: nav_title, widget: hidden, default: Bio }
           - { name: permalink, widget: hidden, default: /bio/ }
           - { name: body, label: Bio text, widget: markdown }
       - name: studying
@@ -101,5 +102,6 @@ collections:
         fields:
           - { name: layout, widget: hidden, default: page }
           - { name: title, label: Page title, widget: string }
+          - { name: nav_title, widget: hidden, default: Studying }
           - { name: permalink, widget: hidden, default: /studying/ }
           - { name: body, label: Page text, widget: markdown }

@@ -1,0 +1,42 @@
+{% comment %}
+  Renders past events grouped by season (the academic/orchestral year,
+  August through July): a concert in Oct 2026 belongs to "2026–27";
+  one in Mar 2026 belongs to "2025–26".
+  Parameter: include.events — array of events, most recent first
+  (from event-split.html's `past`).
+{% endcomment %}
+{%- assign current_label = "" -%}
+{%- for event in include.events -%}
+  {%- assign y = event.date | date: "%Y" | plus: 0 -%}
+  {%- assign m = event.date | date: "%m" | plus: 0 -%}
+  {%- if m >= 8 -%}
+    {%- assign season_start = y -%}
+  {%- else -%}
+    {%- assign season_start = y | minus: 1 -%}
+  {%- endif -%}
+  {%- assign season_end = season_start | plus: 1 | modulo: 100 -%}
+  {%- capture label -%}{{ season_start }}–{% if season_end < 10 %}0{% endif %}{{ season_end }}{%- endcapture -%}
+  {%- if label != current_label -%}
+    {%- unless forloop.first -%}</ul></section>{%- endunless -%}
+    <section class="season-group">
+    <h2>The {{ label }} season</h2>
+    <ul class="event-list">
+    {%- assign current_label = label -%}
+  {%- endif -%}
+  {%- assign date_format = site.date_format | default: "%b %-d, %Y" -%}
+  <li>
+    <time datetime="{{ event.date | date: '%Y-%m-%d' }}">{{ event.date | date: date_format }}</time>
+    <div>
+      <span class="event-title">
+        {%- if event.url -%}
+        <a href="{{ event.url }}">{{ event.title | escape }}</a>
+        {%- else -%}
+        {{ event.title | escape }}
+        {%- endif -%}
+        {%- if event.role %}<span class="event-role">· {{ event.role | downcase }}</span>{% endif -%}
+      </span>
+      <span class="event-meta">{{ event.series }}{% if event.venue %} · {{ event.venue }}{% endif %}</span>
+    </div>
+  </li>
+  {%- if forloop.last -%}</ul></section>{%- endif -%}
+{%- endfor -%}
