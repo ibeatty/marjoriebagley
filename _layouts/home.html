@@ -15,7 +15,14 @@ layout: base
   {%- if upcoming.size > 0 -%}
     {% include event-list.html events=upcoming show_blurbs=false %}
   {%- else -%}
-    <p>No upcoming appearances are listed at the moment — check back soon.</p>
+    {%- comment -%}
+      Evergreen prose, never an empty widget: this stays true and fresh-looking
+      even if no dates are listed for months (e.g. over the summer).
+    {%- endcomment -%}
+    <p>During the season, Marjorie performs in most Greensboro Symphony
+    Masterworks and Pops programs as concertmaster, appears in faculty
+    recitals at UNCG, and plays chamber music in North Carolina and beyond.
+    Dates for the coming season appear here as they are announced.</p>
   {%- endif -%}
 
   <p><a href="{{ "/events/" | relative_url }}">All performances, including past seasons →</a></p>
