@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction 9b · Overture × Piedmont Dusk (violin at foot) — Marjorie Bagley mockup</title>
+<!-- Hybrid: Overture's color-blocked asymmetric layout, Piedmont Dusk's
+     spruce/cream/terracotta palette and Lora/Alegreya type.
+     Variant B: violin photo across the page at the bottom of the off-white
+     area, resting just above the dark footer band (multiply blend onto the
+     cream ground.) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Alegreya+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --spruce:#1f3a2d;
+  --spruce-deep:#16281f;
+  --cream:#f6f1e7;
+  --cream-bright:#fbf8f1;
+  --ink:#26251f;
+  --terra:#b65c38;
+  --terra-deep:#9c4c2d;
+  --sage:#87977f;
+  --sage-pale:#c9cfbc;
+  --hair:#e0d9c9;
+  --serif:"Lora", Georgia, serif;
+  --sans:"Alegreya Sans", system-ui, sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+body{
+  background:var(--cream);color:var(--ink);
+  font-family:var(--sans);
+  font-size:1rem;font-weight:400;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--terra);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+.wrap{max-width:60rem;margin:0 auto;padding:0 1.4rem}
+
+/* spruce masthead band */
+.band{
+  background:linear-gradient(170deg, var(--spruce), var(--spruce-deep));
+  color:var(--cream);
+  padding-bottom:3.4rem;
+}
+.band .bar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.3rem 0;
+}
+.band .mark{
+  font-family:var(--serif);font-size:1.15rem;letter-spacing:.04em;
+  color:var(--cream);
+}
+.band nav{display:flex;gap:1rem 1.7rem;flex-wrap:wrap}
+.band nav a{
+  color:color-mix(in srgb, var(--cream) 72%, transparent);
+  font-size:.8rem;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+}
+.band nav a.active,.band nav a:hover{color:var(--cream);text-decoration:none}
+
+.band .hero{
+  display:grid;
+  grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);
+  gap:2.5rem;
+  align-items:start;
+  padding-top:2.6rem;
+}
+.band h1{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(2.9rem,7vw,5rem);
+  line-height:1.02;
+  letter-spacing:.005em;
+}
+.band h1 em{font-style:italic;font-weight:500;color:var(--terra)}
+.band .side{
+  font-size:.98rem;
+  color:color-mix(in srgb, var(--cream) 85%, transparent);
+  border-left:2px solid var(--terra);
+  padding-left:1.2rem;
+  max-width:24rem;
+  text-wrap:pretty;
+}
+.band .side b{color:#fff;font-weight:600}
+
+@media (max-width:760px){
+  .band .hero{grid-template-columns:1fr}
+  .band .side{max-width:100%}
+}
+
+/* variant B: the instrument at rest, across the foot of the page */
+.coda{
+  margin-top:3.4rem;
+  text-align:center;
+}
+.coda img{
+  display:block;
+  width:min(58rem,92%);
+  margin:0 auto;
+  height:auto;
+  mix-blend-mode:multiply;
+  filter:saturate(1.04);
+}
+.coda figcaption{
+  margin:.9rem 0 0;
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sage);
+}
+.coda figcaption b{color:var(--terra);font-weight:700}
+
+/* pale strip */
+.strip{
+  background:#efe8d9;
+  border-block:1px solid color-mix(in srgb, var(--terra) 35%, transparent);
+}
+.strip .wrap{
+  display:flex;gap:2rem;align-items:baseline;flex-wrap:wrap;
+  padding:.95rem 1.4rem;
+}
+.strip .k{
+  font-size:.75rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--terra-deep);
+}
+.strip .v{font-size:.94rem;color:var(--ink)}
+.strip .v b{font-weight:600}
+
+/* asymmetric numbered sections */
+main section{
+  display:grid;
+  grid-template-columns:minmax(0,.62fr) minmax(0,1.38fr);
+  gap:2.8rem;
+  padding:3rem 0 1.2rem;
+}
+main section h2{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:1.9rem;
+  line-height:1.12;
+  color:var(--spruce);
+  text-wrap:balance;
+}
+main section h2 .no{
+  display:block;
+  font-family:var(--sans);
+  font-size:.78rem;font-weight:700;
+  letter-spacing:.3em;text-transform:uppercase;
+  color:var(--terra);
+  margin-bottom:.7rem;
+}
+@media (max-width:760px){
+  main section{grid-template-columns:1fr;gap:1.3rem;padding-top:2.3rem}
+}
+
+/* events */
+.ev{
+  display:grid;grid-template-columns:5.8rem 1fr;gap:1.1rem;
+  padding:.85rem 0;border-top:1px solid var(--hair);
+  align-items:baseline;
+}
+.ev:last-of-type{border-bottom:1px solid var(--hair)}
+.ev time{
+  font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--terra);
+}
+.ev .t{font-family:var(--serif);font-size:1.16rem;color:var(--ink)}
+.ev .s{display:block;font-size:.76rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--sage);margin-top:.15rem}
+.evnote{margin-top:1rem;font-size:.92rem;color:#57544a;font-style:italic;text-wrap:pretty}
+
+.prose p{text-wrap:pretty;max-width:36rem}
+.prose a.m{
+  display:inline-block;margin-top:.9rem;
+  font-size:.78rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  border-bottom:2px solid var(--terra);
+  color:var(--spruce);
+}
+.prose a.m:hover{text-decoration:none;color:var(--terra)}
+
+/* spruce footer band */
+footer{
+  margin-top:3.2rem;
+  background:var(--spruce-deep);
+  color:color-mix(in srgb, var(--cream) 65%, transparent);
+  padding:2.1rem 0 2.5rem;
+  font-size:.9rem;
+}
+footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer a{color:var(--cream);margin-right:1.1rem}
+footer a:hover{color:var(--terra)}
+</style>
+</head>
+<body>
+<div class="band">
+  <div class="wrap">
+    <div class="bar">
+      <span class="mark">MB</span>
+      <nav>
+        <a class="active" href="#">Home</a><a href="#">Bio</a><a href="#">Studying</a><a href="#">Season</a><a href="#">Contact</a>
+      </nav>
+    </div>
+    <div class="hero">
+      <h1>Marjorie Bagley,<br><em>violin</em></h1>
+      <p class="side"><b>Professor of Violin</b> at UNC Greensboro ·
+      <b>Concertmaster</b> of the Greensboro Symphony · chamber musician
+      across North Carolina &amp; beyond.</p>
+    </div>
+  </div>
+</div>
+
+<div class="strip">
+  <div class="wrap">
+    <span class="k">Now</span>
+    <span class="v">The <b>2026–27 season</b> opens October 3 at the Tanger Center — Marquez, Boyer &amp; Tchaikovsky's Fourth.</span>
+  </div>
+</div>
+
+<main class="wrap">
+  <section>
+    <h2><span class="no">01 · Season</span>Selected dates, 2026–27</h2>
+    <div>
+      <div class="ev"><time>Oct 3</time><div><span class="t">Symphony Opening Night!</span><span class="s">GSO Masterworks · Tanger Center</span></div></div>
+      <div class="ev"><time>Nov 7</time><div><span class="t">Four Seasons Reimagined</span><span class="s">GSO Masterworks · Tanger Center</span></div></div>
+      <div class="ev"><time>Nov 17</time><div><span class="t">Faculty Recital</span><span class="s">UNCG Recital Hall</span></div></div>
+      <div class="ev"><time>Jan 30</time><div><span class="t">The Planets + Star Wars</span><span class="s">GSO Masterworks · Tanger Center</span></div></div>
+      <div class="ev"><time>May 15</time><div><span class="t">Beethoven's Ninth</span><span class="s">GSO Masterworks · Tanger Center</span></div></div>
+      <p class="evnote">Most GSO classical programs feature Marjorie as concertmaster;
+      recital and chamber dates join the list as announced.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="no">02 · Studio</span>Studying with Marjorie</h2>
+    <div class="prose">
+      <p>Violin study at UNC Greensboro in the BM, MM, and DMA programs: weekly
+      one-on-one lessons and chamber coaching. Marjorie remains fascinated by the
+      unique qualities of each student, combining violin technique and learning
+      strategies to help them move toward their potential.</p>
+      <a class="m" href="#">For prospective students</a>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="no">03 · Story</span>A life in performance</h2>
+    <div class="prose">
+      <p>Founding first violinist of the Arcata String Quartet — Wigmore Hall, Weill
+      Recital Hall, a decade of touring — with recordings on the Equilibrium, Centaur,
+      Albany, Summit, and VOX labels, and performances on five continents.</p>
+      <a class="m" href="#">Read the biography</a>
+    </div>
+  </section>
+</main>
+
+<figure class="coda">
+  <img src="../images/cropped-header_violin.jpg"
+       alt="Side view of Marjorie's violin: flamed maple ribs, amber varnish">
+  <figcaption>Her instrument · made in <b>1703</b> · three centuries of voice</figcaption>
+</figure>
+
+<footer>
+  <div class="wrap">
+    <span>© <script>document.write(new Date().getFullYear())</script> Marjorie Bagley</span>
+    <span><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">LinkedIn</a></span>
+  </div>
+</footer>
+</body>
+</html>
