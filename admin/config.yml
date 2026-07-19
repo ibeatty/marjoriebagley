@@ -7,8 +7,7 @@ backend:
   repo: ibeatty/marjoriebagley
   branch: main
   # URL of the deployed sveltia-cms-auth Cloudflare Worker (see _SetupSveltia.md).
-  # PLACEHOLDER — replace after the worker is deployed:
-  base_url: https://REPLACE-WITH-AUTH-WORKER.workers.dev
+  base_url: https://sveltia-cms-auth.ian-8b3.workers.dev
 
 site_url: https://ibeatty.github.io/marjoriebagley
 display_url: https://ibeatty.github.io/marjoriebagley
