@@ -17,8 +17,13 @@ the full plan and `_SetupSveltia.md` for CMS setup steps.)*
 
 ## Design
 
-- [ ] Show Marjorie the five mockups (`_mockups/index.html`) and pick a
-      direction (or a mix)
+- [ ] Show Marjorie the mockups (`_mockups/index.html`) and pick a direction
+      (or a mix). Ian's first impressions (Jul 2026): #5 Piedmont Dusk has the
+      most immediate positive impact (→ variant 5b adds the 1703 violin photo);
+      #1/#2/#4 cluster too closely → wider-net additions #6 Nocturne,
+      #7 Folio, #8 Overture
+- [ ] Verify the violin's year (caption in 5b says 1703, per Ian's
+      recollection) with Marjorie before launch
 - [ ] Implement chosen design as hand-rolled templates (replaces vendored
       Minima; includes mobile appearance — supersedes old "improve appearance
       on phones" item)

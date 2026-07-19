@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction 6 · Nocturne — Marjorie Bagley mockup</title>
+<!-- Wider-net direction: the dark one. Concert hall at night — warm charcoal,
+     a single amber "stage light" accent, big italic serif. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:ital,opsz,wght@0,14..32,300..600;1,14..32,300..600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#191621;
+  --night-2:#211d2b;
+  --cream:#f3ede2;
+  --amber:#e0a458;
+  --amber-deep:#b97e35;
+  --dim:#9a93a5;
+  --hair:#39343f;
+  --display:"Fraunces", Georgia, serif;
+  --sans:"Inter", system-ui, sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+body{
+  background:
+    radial-gradient(90rem 50rem at 50% -20rem, var(--night-2), transparent 60%),
+    var(--night);
+  color:var(--cream);
+  font-family:var(--sans);
+  font-size:1rem;
+  font-weight:300;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--amber);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+.wrap{max-width:42rem;margin:0 auto;padding:0 1.3rem}
+
+nav{
+  display:flex;justify-content:center;gap:1rem 2.2rem;flex-wrap:wrap;
+  padding:1.5rem 1rem;
+  font-size:.78rem;font-weight:500;
+  letter-spacing:.24em;text-transform:uppercase;
+}
+nav a{color:var(--dim)}
+nav a.active,nav a:hover{color:var(--amber);text-decoration:none}
+
+/* hero */
+header.hero{text-align:center;padding:4.6rem 0 3.8rem}
+.hero .over{
+  font-size:.8rem;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--dim);
+}
+h1{
+  font-family:var(--display);
+  font-weight:330;
+  font-style:italic;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(3rem,9vw,5.2rem);
+  line-height:1.02;
+  margin:.9rem 0 0;
+  color:var(--cream);
+  text-wrap:balance;
+}
+.hero .glow{
+  width:8rem;height:1px;margin:2rem auto 0;
+  background:linear-gradient(90deg, transparent, var(--amber), transparent);
+  box-shadow:0 0 18px 1px color-mix(in srgb, var(--amber) 55%, transparent);
+}
+.hero .creds{
+  margin-top:2rem;
+  display:grid;gap:.4rem;
+  font-size:.95rem;color:var(--dim);
+}
+.hero .creds b{color:var(--cream);font-weight:500}
+
+/* season */
+section{padding:2.4rem 0}
+h2{
+  font-size:.78rem;font-weight:600;
+  letter-spacing:.3em;text-transform:uppercase;
+  color:var(--amber);
+  text-align:center;
+  margin-bottom:1.8rem;
+}
+.event{
+  display:grid;grid-template-columns:6rem 1fr;gap:1.2rem;
+  padding:1rem 0;border-top:1px solid var(--hair);
+  align-items:baseline;
+}
+.event:last-of-type{border-bottom:1px solid var(--hair)}
+.event time{
+  font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--amber);
+}
+.event .t{font-family:var(--display);font-weight:400;font-size:1.22rem;color:var(--cream)}
+.event .s{display:block;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-top:.2rem}
+.note{
+  text-align:center;color:var(--dim);font-size:.92rem;
+  margin-top:1.5rem;text-wrap:pretty;
+}
+
+/* doors */
+.doors{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;
+  margin-top:1.4rem;
+}
+.door{
+  border:1px solid var(--hair);
+  background:color-mix(in srgb, var(--night-2) 60%, transparent);
+  padding:1.7rem 1.6rem 1.8rem;
+  border-radius:4px;
+}
+.door h3{
+  font-family:var(--display);font-style:italic;font-weight:400;
+  font-size:1.35rem;margin-bottom:.55rem;
+}
+.door p{font-size:.93rem;color:#c9c3d2;text-wrap:pretty}
+.door a{
+  display:inline-block;margin-top:.75rem;
+  font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+}
+@media (max-width:620px){.doors{grid-template-columns:1fr}}
+
+footer{
+  margin-top:3.4rem;
+  border-top:1px solid var(--hair);
+  padding:2rem 1rem 2.6rem;
+  text-align:center;
+  color:var(--dim);font-size:.85rem;letter-spacing:.05em;
+}
+footer a{margin:0 .55rem;color:var(--cream)}
+footer a:hover{color:var(--amber)}
+</style>
+</head>
+<body>
+<nav>
+  <a class="active" href="#">Home</a><a href="#">Bio</a><a href="#">Studying</a><a href="#">Season</a><a href="#">Contact</a>
+</nav>
+
+<header class="hero wrap">
+  <div class="over">violinist · greensboro, north carolina</div>
+  <h1>Marjorie Bagley</h1>
+  <div class="glow" aria-hidden="true"></div>
+  <div class="creds">
+    <span><b>Professor of Violin</b>, UNC Greensboro School of Music</span>
+    <span><b>Concertmaster</b>, Greensboro Symphony Orchestra</span>
+    <span><b>Chamber musician</b>, North Carolina &amp; beyond</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <section>
+    <h2>The 2026–27 Season</h2>
+    <div class="event"><time>Oct 3</time><div><span class="t">Symphony Opening Night!</span><span class="s">GSO Masterworks · Tanger Center</span></div></div>
+    <div class="event"><time>Nov 7</time><div><span class="t">Four Seasons Reimagined</span><span class="s">GSO Masterworks · Tanger Center</span></div></div>
+    <div class="event"><time>Nov 17</time><div><span class="t">Faculty Recital</span><span class="s">UNCG Recital Hall</span></div></div>
+    <div class="event"><time>Jan 30</time><div><span class="t">The Planets + Star Wars</span><span class="s">GSO Masterworks · Tanger Center</span></div></div>
+    <div class="event"><time>May 15</time><div><span class="t">Beethoven's Ninth</span><span class="s">GSO Masterworks · Tanger Center</span></div></div>
+    <p class="note">In season, Marjorie leads most GSO classical programs from the
+    concertmaster's chair; recital and chamber dates join the list as announced.</p>
+  </section>
+
+  <section>
+    <div class="doors">
+      <div class="door">
+        <h3>The studio</h3>
+        <p>Violin study in UNCG's BM, MM, and DMA programs — weekly one-on-one lessons
+        and chamber coaching, shaped to each student's potential.</p>
+        <a href="#">Studying with Marjorie</a>
+      </div>
+      <div class="door">
+        <h3>The story</h3>
+        <p>Founding first violinist of the Arcata String Quartet; Wigmore Hall to Weill
+        Recital Hall; recordings on five labels, performances on five continents.</p>
+        <a href="#">Full biography</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <a href="#">Facebook</a> · <a href="#">Instagram</a> · <a href="#">LinkedIn</a><br>
+  © <script>document.write(new Date().getFullYear())</script> Marjorie Bagley
+</footer>
+</body>
+</html>

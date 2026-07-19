@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction 5b · Piedmont Dusk, with the 1703 violin — Marjorie Bagley mockup</title>
+<!-- mockup — see index.html for the full set. Variant of #5 working in the
+     photo of Marjorie's actual instrument (made 1703): white-background photo
+     + mix-blend-mode:multiply = the violin sits on the cream sheet like a
+     printed plate, no clipping or editing needed. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Alegreya+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --spruce:#1f3a2d;
+  --spruce-deep:#16281f;
+  --cream:#f6f1e7;
+  --cream-bright:#fbf8f1;
+  --ink:#26251f;
+  --terra:#b65c38;
+  --sage:#87977f;
+  --hair:#e0d9c9;
+  --serif:"Lora", Georgia, serif;
+  --sans:"Alegreya Sans", system-ui, sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+body{
+  background:var(--cream);color:var(--ink);
+  font-family:var(--serif);
+  font-size:1.06rem;line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--terra);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+.wrap{max-width:44rem;margin:0 auto;padding:0 1.3rem}
+
+/* dusk band header */
+.band{
+  background:linear-gradient(170deg, var(--spruce), var(--spruce-deep));
+  color:var(--cream);
+  padding:0 0 3.6rem;
+}
+nav{
+  display:flex;justify-content:center;gap:1rem 2rem;flex-wrap:wrap;
+  padding:1.4rem 1rem;
+  font-family:var(--sans);
+  font-size:.86rem;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+}
+nav a{color:color-mix(in srgb, var(--cream) 75%, transparent)}
+nav a.active,nav a:hover{color:var(--cream);text-decoration:none}
+.band .hero{text-align:center;padding-top:2.6rem}
+.band h1{
+  font-weight:500;
+  font-size:clamp(2.6rem,7vw,4rem);
+  letter-spacing:.01em;
+  line-height:1.08;
+}
+.band .sub{
+  font-family:var(--sans);
+  font-weight:300;
+  font-size:1.15rem;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--sage);
+  margin-top:.7rem;
+}
+.band .intro{
+  max-width:33rem;margin:1.9rem auto 0;
+  font-size:1.16rem;line-height:1.62;
+  font-style:italic;
+  color:color-mix(in srgb, var(--cream) 92%, transparent);
+  text-wrap:pretty;
+}
+.band .intro b{color:#fff;font-weight:600}
+
+/* overlapping content card */
+main{position:relative;padding-bottom:2rem}
+.sheet{
+  background:var(--cream-bright);
+  border:1px solid var(--hair);
+  border-radius:3px;
+  box-shadow:0 18px 40px -30px rgba(22,40,31,.5);
+  margin-top:-2.2rem;
+  padding:2.4rem 2.6rem 2.6rem;
+}
+@media (max-width:600px){.sheet{padding:1.8rem 1.3rem}}
+
+/* the instrument, as a printed plate on the sheet */
+.plate{
+  margin:.2rem 0 2.2rem;
+  text-align:center;
+}
+.plate img{
+  display:block;
+  width:100%;
+  height:auto;
+  mix-blend-mode:multiply;          /* white photo ground melts into the cream */
+  filter:saturate(1.04) contrast(1.01);
+}
+.plate figcaption{
+  margin-top:.9rem;
+  font-family:var(--sans);
+  font-size:.8rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--sage);
+}
+.plate figcaption b{color:var(--terra);font-weight:700}
+
+h2{
+  font-family:var(--sans);
+  font-size:.85rem;font-weight:700;
+  letter-spacing:.24em;text-transform:uppercase;
+  color:var(--spruce);
+  margin-bottom:1.2rem;
+}
+h2 em{color:var(--terra);font-style:normal}
+
+/* season */
+.event{
+  display:grid;grid-template-columns:5.6rem 1fr;gap:1rem;
+  padding:.85rem 0;
+  border-top:1px solid var(--hair);
+  align-items:baseline;
+}
+.event:last-of-type{border-bottom:1px solid var(--hair)}
+.event time{
+  font-family:var(--sans);font-weight:700;
+  font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--terra);
+}
+.event .t{font-size:1.08rem}
+.event .s{
+  display:block;
+  font-family:var(--sans);font-size:.8rem;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--sage);margin-top:.1rem;
+}
+.season-note{
+  font-style:italic;color:#57544a;font-size:.98rem;
+  margin-top:1.2rem;text-wrap:pretty;
+}
+
+/* pair */
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;margin-top:2.6rem}
+.pair p{font-size:1rem;color:#3b382f;text-wrap:pretty}
+.pair a.m{
+  display:inline-block;margin-top:.6rem;
+  font-family:var(--sans);font-weight:600;
+  font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;
+}
+@media (max-width:600px){.pair{grid-template-columns:1fr}}
+
+/* footer band */
+footer{
+  background:var(--spruce-deep);
+  color:color-mix(in srgb, var(--cream) 70%, transparent);
+  margin-top:3rem;
+  padding:2rem 1rem 2.4rem;
+  text-align:center;
+  font-family:var(--sans);font-size:.9rem;letter-spacing:.06em;
+}
+footer a{color:var(--cream);margin:0 .6rem}
+</style>
+</head>
+<body>
+<div class="band">
+  <nav>
+    <a class="active" href="#">Home</a><a href="#">Bio</a><a href="#">Studying</a><a href="#">Season</a><a href="#">Contact</a>
+  </nav>
+  <div class="hero wrap">
+    <h1>Marjorie Bagley</h1>
+    <div class="sub">violin</div>
+    <p class="intro">I teach violinists at <b>UNC Greensboro</b>, lead the
+    <b>Greensboro Symphony</b> from the concertmaster's chair, and play chamber
+    music with colleagues across North Carolina and beyond — music old, new,
+    and in between.</p>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="sheet">
+    <figure class="plate">
+      <img src="../images/cropped-header_violin.jpg"
+           alt="Side view of Marjorie's violin: flamed maple ribs, amber varnish, an f-hole catching the light">
+      <figcaption>Her instrument · made in <b>1703</b> · three centuries of voice</figcaption>
+    </figure>
+    <h2>The 2026–27 Season <em>· selected dates</em></h2>
+    <div class="event"><time>Oct 3</time><div><span class="t">Symphony Opening Night!</span><span class="s">GSO Masterworks · Tanger Center</span></div></div>
+    <div class="event"><time>Nov 7</time><div><span class="t">Four Seasons Reimagined</span><span class="s">GSO Masterworks · Tanger Center</span></div></div>
+    <div class="event"><time>Nov 17</time><div><span class="t">Faculty Recital</span><span class="s">UNCG Recital Hall</span></div></div>
+    <div class="event"><time>Jan 30</time><div><span class="t">The Planets + Star Wars</span><span class="s">GSO Masterworks · Tanger Center</span></div></div>
+    <div class="event"><time>May 15</time><div><span class="t">Beethoven's Ninth</span><span class="s">GSO Masterworks · Tanger Center</span></div></div>
+    <p class="season-note">Most Greensboro Symphony classical programs feature Marjorie as
+    concertmaster; recital and chamber dates join the list as they're announced.</p>
+
+    <div class="pair">
+      <div>
+        <h2>The Studio</h2>
+        <p>Violin study in UNCG's BM, MM, and DMA programs — weekly lessons and chamber
+        coaching, shaped to the musician each student is becoming.</p>
+        <a class="m" href="#">Studying with Marjorie →</a>
+      </div>
+      <div>
+        <h2>The Story</h2>
+        <p>From the Arcata String Quartet's decade on stage — Wigmore Hall, Weill Recital
+        Hall — to recordings on five labels and performances on five continents.</p>
+        <a class="m" href="#">Full biography →</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <a href="#">Facebook</a> · <a href="#">Instagram</a> · <a href="#">LinkedIn</a><br>
+  © <script>document.write(new Date().getFullYear())</script> Marjorie Bagley
+</footer>
+</body>
+</html>
