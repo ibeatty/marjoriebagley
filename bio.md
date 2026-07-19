@@ -5,7 +5,8 @@ nav_title: Bio
 permalink: /bio/
 ---
 
-![Portrait of Marjorie](../images/MarjorieBagley-4x6_300dpi-200x300.jpg){: .align-right}
+![Side view of Marjorie's violin — flamed maple ribs and amber varnish](../images/cropped-header_violin.jpg){: .plate}
+
 Marjorie Bagley grew up in Wingate NC, and performed her first concerto with the North Carolina Symphony Orchestra at age XX. She received her BM summa cum laude in Violin Performance from the University of Michigan, completed her MM at the Manhattan School of Music as a student of Pinchas Zukerman, and has studied with Josef Gingold and Patinka Kopec.
 
 After graduating, she played full-time as first violinist and founding member of the Arcata String Quartet. The ensemble received coaching from Isidore Cohen and members of the Tokyo and American String Quartets, and performed for nearly a decade around the US and Europe, including concerts in London's Wigmore Hall, Weill Recital Hall at Carnegie, and their NYC debut in Town Hall. They can be heard in recordings on the VOX label, alongside members of the Tokyo and American Quartets. The quartet performed across Europe over several summers, including a concert at the Rheingau Music Festival. They held artist-in-residence status at Utah State University from XXXX to XXXX.
