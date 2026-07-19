@@ -4,6 +4,11 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
+  # Weekly rebuild (Mondays 08:17 UTC) so that past concerts age out of the
+  # "upcoming" list even when nothing has been pushed. The upcoming/past split
+  # is computed at build time from each event's date (see _events/).
+  schedule:
+    - cron: "17 8 * * 1"
 
 permissions:
   contents: read
