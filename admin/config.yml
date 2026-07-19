@@ -37,7 +37,9 @@ collections:
         hint: "Concert name without the series prefix — e.g. “Orchestral Fireworks!”"
       - name: date
         label: Concert date
-        widget: date
+        widget: datetime
+        type: date            # Sveltia: date-only picker (the old `date` widget is gone)
+        time_format: false    # Decap-compat, in case we ever swap back
         format: YYYY-MM-DD
         hint: The date of the performance (not today's date).
       - name: series
