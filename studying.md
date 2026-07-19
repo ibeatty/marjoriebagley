@@ -1,8 +1,8 @@
 ---
 layout: page
 title: Studying with Marjorie
-nav_title: Studying
-permalink: /studying/
+nav_title: Teaching
+permalink: /teaching/
 ---
 
 Marjorie is Professor of Violin with the [School of Music](https://vpa.uncg.edu/music/) in UNCG's College of Visual and Performing Arts. She teaches violin students in the Bachelor of Music in Performance, Bachelor of Music in Music Education, Master of Music in Performance, and Doctor of Musical Arts degrees through weekly one-on-one lessons. She also coaches student chamber groups.

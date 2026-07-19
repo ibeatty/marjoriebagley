@@ -1,8 +1,8 @@
 ---
 layout: page
 title: Performances
-nav_title: Season
-permalink: /events/
+nav_title: Performances
+permalink: /performances/
 wide: true
 ---
 
