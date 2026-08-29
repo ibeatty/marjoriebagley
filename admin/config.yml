@@ -100,11 +100,11 @@ collections:
           - { name: permalink, widget: hidden, default: /bio/ }
           - { name: body, label: Bio text, widget: markdown }
       - name: studying
-        label: Studying with Marjorie
+        label: Teaching
         file: studying.md
         fields:
           - { name: layout, widget: hidden, default: page }
           - { name: title, label: Page title, widget: string }
-          - { name: nav_title, widget: hidden, default: Studying }
-          - { name: permalink, widget: hidden, default: /studying/ }
+          - { name: nav_title, widget: hidden, default: Teaching }
+          - { name: permalink, widget: hidden, default: /teaching/ }
           - { name: body, label: Page text, widget: markdown }
