@@ -61,7 +61,13 @@ infrastructure level (dead certs/hosting).
   downloads): audition-rep guidance, practice notes, studio FAQ.
 - An instrument/story page ("My Violin") — human, evergreen, rare.
 
-## The five mockup directions
+## The five mockup directions (from this research)
+
+*Seven more mockups were added later — a violin-photo variant of Piedmont
+Dusk, and three further directions (Nocturne, Folio, Overture) plus three
+Overture/Dusk hybrids — after Ian's request to broaden the palette options.
+Those aren't research-driven the way the original five are; see
+`mockups/index.html` for the full current set of twelve.*
 
 1. **Concert Program** *(maroon continuity)* — burgundy on warm ivory,
    hairline gold rules, high-contrast serif masthead set like a printed

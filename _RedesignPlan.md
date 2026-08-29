@@ -2,21 +2,26 @@
 
 *Phase 1 working document, July 2026. See `CLAUDE.md` for project context and constraints.*
 
-> **Status (July 18, 2026):** Phases 1–2 are BUILT: `_events/` collection live
-> with migrated concerts, upcoming/past templates, weekly cron rebuild,
-> Makefile dev wrapper, Sveltia CMS at `/admin/` (auth steps pending — see
-> `_SetupSveltia.md`), REST-API-based scraper with human-choice import.
-> Phase 3 research is done (`_DesignResearch.md`); twelve mockups live at
-> `mockups/index.html` (staging URL shareable with Marjorie). **Phase 4 is
-> BUILT (July 19, 2026): the real site now runs hand-rolled "Conservatory
-> Modern"-layout templates** — Minima and Sass deleted; one plain-CSS file
-> with the palette isolated as tokens (recoloring after Marjorie's verdict is
-> a ~9-line edit); self-hosted fonts; season-grouped events page; evergreen
-> empty states. Layout per Ian's decision; color scheme explicitly provisional.
+> **Status (updated Aug 29, 2026):** Phases 1–4 are BUILT and stable. `_events/`
+> collection live with migrated concerts, upcoming/past templates, weekly cron
+> rebuild (running cleanly every Monday since launch, zero gaps), Makefile dev
+> wrapper, REST-API-based scraper with human-choice import. Sveltia CMS at
+> `/admin/` is fully working — GitHub OAuth via a Cloudflare Worker, sign-in
+> verified end-to-end (see `_SetupSveltia.md` for how it's wired). Phase 3
+> research is done (`_DesignResearch.md`); twelve mockups live at
+> `mockups/index.html` (staging URL shareable with Marjorie). The real site
+> runs hand-rolled "Conservatory Modern"-layout templates — Minima and Sass
+> deleted; one plain-CSS file with the palette isolated as tokens (recoloring
+> after Marjorie's verdict is a ~9-line edit); self-hosted fonts;
+> season-grouped performances page; evergreen empty states. Layout is Ian's
+> decision and is the real live baseline, not a placeholder; color scheme is
+> explicitly still provisional pending Marjorie.
 > Remaining: Marjorie's design/color verdict (mockups stay up for her),
-> Ian's manual steps in `_TODO.md` (Sveltia auth, concert picks, content),
-> then Phase 5 (content + DreamHost cutover). Mockups directory gets deleted
-> at launch.
+> Ian's manual steps in `_TODO.md` (concert picks, Marjorie's GitHub
+> collaborator invite, content), then Phase 5 (content + DreamHost cutover).
+> Mockups directory gets deleted at launch. Note: the Teaching and
+> Performances pages were renamed from their original `/studying/`/`/events/`
+> permalinks on Jul 19 — filenames (`studying.md`/`events.md`) are unchanged.
 
 ## Guiding constraints (from project goals)
 
@@ -68,7 +73,7 @@ Small fixed set; each must be writable once and left alone:
 
 ### Navigation
 
-Single flat nav, ≤5 items: **Home · Bio · Studying · Events (· Listen)**. Both audience paths visible from the home screen above the fold.
+Single flat nav, ≤5 items: **Home · Bio · Studying/Teaching · Events/Performances (· Listen)**. (As built, the live nav labels are "Bio · Teaching · Performances" — see `CLAUDE.md`.) Both audience paths visible from the home screen above the fold.
 
 ## Content-freshness audit of existing material
 

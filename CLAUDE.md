@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A Jekyll static site — a professional website for violinist Marjorie Bagley (Professor of Violin at UNCG, Concertmaster of the Greensboro Symphony Orchestra). Ian Beatty (her husband) maintains it on her behalf. It builds and deploys to GitHub Pages via GitHub Actions. Live at https://ibeatty.github.io/marjoriebagley/.
 
-**See `_RedesignPlan.md`** for the active redesign plan: content model, IA, stack/CMS research findings, and the DreamHost-exit checklist. **`_DesignResearch.md`** holds the comparable-musician survey (conventions, staleness traps, the five design directions). **`mockups/`** contains five self-contained homepage mockups for Marjorie's review — open `mockups/index.html` in a browser. **`_SetupSveltia.md`** has Ian's remaining manual CMS-auth steps.
+**See `_RedesignPlan.md`** for the active redesign plan: content model, IA, stack/CMS research findings, and the DreamHost-exit checklist. **`_DesignResearch.md`** holds the comparable-musician survey (conventions, staleness traps, the original five design directions). **`mockups/`** contains twelve self-contained homepage mockups for Marjorie's review — open `mockups/index.html` in a browser. **`_SetupSveltia.md`** has the CMS-auth setup steps (done; kept as reference).
 
 ## Project context & current goals
 
@@ -108,19 +108,19 @@ make scrape  # list upcoming GSO concerts (see Adding concerts below)
 
 Local builds use Homebrew Ruby (`/opt/homebrew/opt/ruby/bin`) with gems
 vendored into `vendor/bundle` (gitignored). Docker is NOT installed on this
-machine — the old `docker run … bretfisher/jekyll-serve` workflow in
-`_MaintenanceChecklist.md` is historical.
+machine — an earlier `docker run … bretfisher/jekyll-serve` workflow is
+long gone; git history has it if anyone ever needs it.
 
-Deployment is automatic: pushing to `main` triggers `.github/workflows/jekyll.yml`, which builds with Jekyll 4.x on Ruby 3.2 and publishes to Pages. A weekly cron in the same workflow rebuilds Mondays 08:17 UTC so past events age out of the upcoming list without a push. There is no separate deploy step.
+Deployment is automatic: pushing to `main` triggers `.github/workflows/jekyll.yml`, which builds with Jekyll 4.x on Ruby 4.0 and publishes to Pages. A weekly cron in the same workflow rebuilds Mondays 08:17 UTC so past events age out of the upcoming list without a push. There is no separate deploy step.
 
 ## Architecture & conventions
 
 - **Templates are hand-rolled** (July 2026; the vendored Minima theme was deleted — no theme gem, no Sass). The whole surface is: `_layouts/default.html` (document shell, header/nav/footer), `home.html` (hero + role cards + season strip), `page.html` (interior; `wide: true` front matter opts out of the narrow column), plus `_includes/event-split.html`, `event-list.html`, `season-archive.html`. The layout implements the "Conservatory Modern" mockup direction (mockups/3-…), pending Marjorie's color verdict.
 - **Styles are ONE plain-CSS file**: `assets/css/main.css`. No preprocessor, zero build warnings. **The entire palette is a token block at the top of that file** — recoloring the site (expected once Marjorie chooses) means editing ~9 custom properties and nothing else. Fonts (Libre Franklin + Source Serif 4, variable woff2, latin subset) are **self-hosted** in `assets/fonts/` — no third-party font requests; re-download via Google Fonts if ever changing families.
-- **Nav** is generated from `header_pages` in `_config.yml`; a page's `nav_title` front matter (e.g. "Bio", "Season") overrides its `title` in the nav. Footer socials live under `socials:` in `_config.yml`. Footer year is Liquid (`site.time`), kept honest by the weekly cron rebuild.
-- **Pages** are the markdown files listed in `header_pages` (`index.md`, `bio.md`, `studying.md`, `events.md`). The home hero headline/roles/cards are design furniture hard-coded in `_layouts/home.html`; the editable intro paragraph is `index.md`'s body. `/events/` groups past concerts by season (Aug–Jul, via `season-archive.html`).
-- **Concerts are an `_events/` collection** (NOT blog posts; `_posts/` was deleted). One file per event, named `YYYY-MM-DD-slug.md`, front matter: `title`, `date` (concert date), `series` (`GSO Masterworks` / `GSO Pops` / `GSO Chamber` / `GSO` / `Chamber music` / `UNCG` / `Other`), optional `role` (e.g. `Soloist`), optional `venue`, optional `url`; body is an optional short blurb. `_includes/event-split.html` computes `upcoming`/`past` arrays at build time (an event stays upcoming through the end of its concert day); `_includes/event-list.html` renders them. Home shows upcoming (falling back to evergreen prose, NEVER an empty-state message — see `_DesignResearch.md` on why); `/events/` shows upcoming + past.
-- **Web editing (Sveltia CMS)** lives at `/admin/` (`admin/index.html` + `admin/config.yml`, Decap-config-compatible). Remaining one-time auth setup for Ian is in `_SetupSveltia.md`; `base_url` in `admin/config.yml` is a placeholder until the Cloudflare auth worker is deployed. Schema changes to `_events/` front matter must be mirrored in `admin/config.yml`.
+- **Nav** is generated from `header_pages` in `_config.yml`; a page's `nav_title` front matter (e.g. "Bio", "Performances") overrides its `title` in the nav. Footer socials live under `socials:` in `_config.yml`. Footer year is Liquid (`site.time`), kept honest by the weekly cron rebuild.
+- **Pages** are the markdown files listed in `header_pages` (`index.md`, `bio.md`, `studying.md`, `events.md` — filenames are historical and don't match their current `nav_title`/`permalink`: they render as "Teaching" at `/teaching/` and "Performances" at `/performances/`). The home hero headline/roles/cards are design furniture hard-coded in `_layouts/home.html`; the editable intro paragraph is `index.md`'s body. `/performances/` groups past concerts by season (Aug–Jul, via `season-archive.html`).
+- **Concerts are an `_events/` collection** (NOT blog posts; `_posts/` was deleted). One file per event, named `YYYY-MM-DD-slug.md`, front matter: `title`, `date` (concert date), `series` (`GSO Masterworks` / `GSO Pops` / `GSO Chamber` / `GSO` / `Chamber music` / `UNCG` / `Other`), optional `role` (e.g. `Soloist`), optional `venue`, optional `url`; body is an optional short blurb. `_includes/event-split.html` computes `upcoming`/`past` arrays at build time (an event stays upcoming through the end of its concert day); `_includes/event-list.html` renders them. Home shows upcoming (falling back to evergreen prose, NEVER an empty-state message — see `_DesignResearch.md` on why); `/performances/` shows upcoming + past.
+- **Web editing (Sveltia CMS)** lives at `/admin/` (`admin/index.html` + `admin/config.yml`, Decap-config-compatible) and is fully working: GitHub OAuth via a Cloudflare Worker (separate private repo `ibeatty/sveltia-cms-auth`), sign-in verified end-to-end. `_SetupSveltia.md` documents how it's wired, kept as reference. Schema changes to `_events/` front matter must be mirrored in `admin/config.yml` (and vice versa — this bit us once already: a page rename updated the page's own front matter but not `admin/config.yml`'s hidden defaults for it).
 
 ## Adding concerts
 
@@ -128,6 +128,6 @@ Deployment is automatic: pushing to `main` triggers `.github/workflows/jekyll.ym
 
 ## Project notes
 
-- `_TODO.md`, `_MaintenanceChecklist.md`, and `_SETUP_NOTES.md` are underscore-prefixed so Jekyll ignores them in the build; they track outstanding work and upkeep. Consult `_MaintenanceChecklist.md` before dependency/theme upgrades.
+- `_TODO.md` and `_MaintenanceChecklist.md` are underscore-prefixed so Jekyll ignores them in the build; they track outstanding work and upkeep. Consult `_MaintenanceChecklist.md` before dependency upgrades.
 - `_config.yml` changes require a build restart to take effect locally.
 - `Gemfile.lock` and `_site/` are gitignored.
