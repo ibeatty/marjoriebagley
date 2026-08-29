@@ -44,9 +44,6 @@ socials:
 exclude:
   - CLAUDE.md
   - Makefile
-  - README.md
-  - readme_banner.svg
-  - script/
   - scripts/
   - vendor/
   - Gemfile
