@@ -69,6 +69,20 @@ either:
   ```
   Preview with `make serve`, then commit and push.
 
+## Edit or delete a concert that's already published
+
+Once an event is live, how it was originally created — scraped, hand-added,
+or entered in Sveltia — doesn't matter. It's just a file in `_events/` in the
+repo, and either path always works:
+
+- **In Sveltia** (`/admin/`) — open it under "Concerts & Events," edit or
+  delete, save. No git required.
+- **By hand** — edit or `git rm` the file, commit, push.
+
+Sveltia's save skips the local git steps, but the site still takes the same
+~1–2 minute build-and-deploy as any other push before the change is actually
+live — it isn't instant, just more convenient.
+
 ## Undo something before it's pushed
 
 Nothing you do locally reaches the live site until you `git push` — `make
@@ -87,14 +101,10 @@ push:
   everything changed/added; `git diff` shows the actual line-by-line changes
   for anything already tracked.
 
-This only applies pre-push. Once something is pushed (or saved through
-Sveltia, which commits directly — see the note below), it's live, and fixing
-it means a normal follow-up edit-and-push rather than an undo.
-
-*Sveltia (`/admin/`) commits straight to the repo on save — there's no
-local-only preview stage for CMS edits the way there is for hand-edited
-files. If you (or Marjorie) publish something wrong through Sveltia, correct
-it with another save in Sveltia, or by editing the file directly and pushing.*
+This only applies pre-push — Sveltia has no equivalent local-only stage,
+since it commits directly on save (see "Edit or delete a concert that's
+already published" above). Once something is live, fixing it means a normal
+follow-up edit, not an undo.
 
 ## Edit page text (Bio, Teaching, Home intro)
 
