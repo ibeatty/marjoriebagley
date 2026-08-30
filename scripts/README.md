@@ -10,11 +10,17 @@ Requires [uv](https://docs.astral.sh/uv/) (dependencies are declared inline
 in the script — nothing to install).
 
 ```bash
-# From the repo root (or `make scrape`):
+# From the repo root:
 uv run scripts/scrape_gso_concerts.py                 # numbered list of upcoming concerts
 uv run scripts/scrape_gso_concerts.py --import 1,3,5  # import those numbers
 uv run scripts/scrape_gso_concerts.py --import all    # import every new one
 uv run scripts/scrape_gso_concerts.py --start 2027-01-01  # look further ahead
+
+# Or via `make scrape` — flags go inside ARGS, not after `make scrape` directly
+# (`make scrape --import all` fails: make tries to parse `--import` itself):
+make scrape                          # numbered list
+make scrape ARGS="--import 1,3,5"    # import those numbers
+make scrape ARGS="--import all"      # import every new one
 ```
 
 Already-imported concerts show a `[have]` marker (matched by event URL) and

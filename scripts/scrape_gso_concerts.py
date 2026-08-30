@@ -14,11 +14,18 @@ playing. Review them afterwards (locally, or in the Sveltia editor at
 /admin/) — especially to set `role: Soloist` where deserved and to trim the
 auto-extracted blurb.
 
-Usage (from the repo root, or via `make scrape`):
+Usage (from the repo root):
     uv run scripts/scrape_gso_concerts.py                 # list upcoming concerts
     uv run scripts/scrape_gso_concerts.py --import 1,3,5  # import those numbers
     uv run scripts/scrape_gso_concerts.py --import all    # import everything new
     uv run scripts/scrape_gso_concerts.py --start 2027-01-01   # look further out
+
+Or via the Makefile wrapper — note flags go inside ARGS, not after `make
+scrape` directly (`make scrape --import all` fails: make itself tries to
+parse `--import` as its own option):
+    make scrape                          # list upcoming concerts
+    make scrape ARGS="--import 1,3,5"    # import those numbers
+    make scrape ARGS="--import all"      # import everything new
 
 Data comes from the site's Events Calendar REST API
 (/wp-json/tribe/events/v1/events) — a stable WordPress-plugin interface, far
@@ -173,8 +180,9 @@ def main():
         print(f"{i:3}. [{mark}] {e['date']}  {e['title']:<{width}}  {e['series']}")
 
     if not args.imports:
-        print("\nNothing imported. Rerun with --import N,M (or --import all) "
-              "for the concerts Marjorie is playing.")
+        print("\nNothing imported. Rerun to choose which concerts to add:")
+        print('  make scrape ARGS="--import N,M"     (or ARGS="--import all")')
+        print("  uv run scripts/scrape_gso_concerts.py --import N,M   (direct, no make)")
         return 0
 
     if args.imports.strip().lower() == "all":

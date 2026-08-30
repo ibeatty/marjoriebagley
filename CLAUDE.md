@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A Jekyll static site — a professional website for violinist Marjorie Bagley (Professor of Violin at UNCG, Concertmaster of the Greensboro Symphony Orchestra). Ian Beatty (her husband) maintains it on her behalf. It builds and deploys to GitHub Pages via GitHub Actions. Live at https://ibeatty.github.io/marjoriebagley/.
 
-**See `_RedesignPlan.md`** for the active redesign plan: content model, IA, stack/CMS research findings, and the DreamHost-exit checklist. **`_DesignResearch.md`** holds the comparable-musician survey (conventions, staleness traps, the original five design directions). **`mockups/`** contains twelve self-contained homepage mockups for Marjorie's review — open `mockups/index.html` in a browser. **`_SetupSveltia.md`** has the CMS-auth setup steps (done; kept as reference).
+**See `_Workflows.md`** for the canonical "how do I do X" reference (add a concert, edit page text, recolor, add a page, check a deploy, etc.) — start there for any recurring task. **`_RedesignPlan.md`** has the active redesign plan: content model, IA, stack/CMS research findings, and the DreamHost-exit checklist. **`_DesignResearch.md`** holds the comparable-musician survey (conventions, staleness traps, the original five design directions). **`mockups/`** contains twelve self-contained homepage mockups for Marjorie's review — open `mockups/index.html` in a browser. **`_SetupSveltia.md`** has the CMS-auth setup steps (done; kept as reference).
 
 ## Project context & current goals
 
@@ -75,7 +75,9 @@ well-meaning change that adds maintenance surface or staleness.
   (`_includes/event-split.html`); the Monday cron rebuild ages events out
   between pushes. If upcoming looks stale, check the cron ran.
 
-**Recipes for the common tasks:**
+**Recipes for the common tasks** (full human-facing task reference, including
+things outside an AI session's scope like inviting a collaborator or
+switching git accounts: `_Workflows.md`):
 
 - *Add a concert:* `make scrape` → `make scrape ARGS="--import N,M"` →
   review (set `role: Soloist` if deserved, trim blurb) → commit. Or let
@@ -124,7 +126,7 @@ Deployment is automatic: pushing to `main` triggers `.github/workflows/jekyll.ym
 
 ## Adding concerts
 
-`scripts/scrape_gso_concerts.py` (via `make scrape` or `uv run`) lists upcoming GSO concerts from the site's Events Calendar REST API and imports only human-chosen ones (`--import 1,3` / `--import all`) as `_events/` files — Marjorie isn't in every GSO event, so selection is deliberately manual. Blurbs are auto-extracted from event pages best-effort. After importing: set `role: Soloist` where deserved, trim blurbs, commit. Details and known site quirks (WAF needs a browser User-Agent; sponsor-prefixed category names): `scripts/README.md`.
+`scripts/scrape_gso_concerts.py` (via `make scrape` or `uv run`) lists upcoming GSO concerts from the site's Events Calendar REST API and imports only human-chosen ones as `_events/` files — Marjorie isn't in every GSO event, so selection is deliberately manual. Via make, flags go inside `ARGS` (`make scrape ARGS="--import 1,3"` or `ARGS="--import all"`) — `make scrape --import all` fails, since make parses `--import` as its own option, not the script's. Blurbs are auto-extracted from event pages best-effort. After importing: set `role: Soloist` where deserved, trim blurbs, commit. Details and known site quirks (WAF needs a browser User-Agent; sponsor-prefixed category names): `scripts/README.md`. Full task-by-task reference for this and other recurring jobs: `_Workflows.md`.
 
 ## Project notes
 
