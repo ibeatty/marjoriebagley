@@ -69,6 +69,15 @@ well-meaning change that adds maintenance surface or staleness.
 - Pushing to `main` deploys staging immediately. That is low-stakes today;
   **after the marjoriebagley.com DNS cutover the same push is the live
   public site** — recalibrate accordingly.
+- "Staging" describes the DOMAIN only (not yet the one advertised
+  publicly) — the URL itself is a real, fully public, unauthenticated site
+  right now, anyone with the link can see it. There is no separate staging
+  *deployment*: one Jekyll build serves both hostnames. Sveltia has no
+  `publish_mode: editorial_workflow` configured, so it has no draft/review
+  step either — every save (yours, or eventually Marjorie's) commits
+  straight to `main` and is live within the usual ~1–2 minute build, with
+  no human gate in between. If a review step is ever wanted, that Decap/
+  Sveltia feature is the way to add one.
 - `make build` completes with ZERO warnings. Any new warning is a regression
   you introduced.
 - An event counts as "upcoming" through the end of its concert day
