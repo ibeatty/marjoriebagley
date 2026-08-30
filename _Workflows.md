@@ -42,6 +42,8 @@ After importing, review each new file in `_events/`:
   concertmaster — the scraper can't know this.
 - Trim or rewrite the auto-extracted blurb.
 - Check `make serve` shows it correctly on the home page and `/performances/`.
+- Don't want one after all (wrong concert, `--import all` grabbed too much)?
+  Just delete its file — see "Undo something before it's pushed" below.
 
 Then commit and push — staging deploys automatically. Full detail on the
 scraper itself: `scripts/README.md`.
@@ -66,6 +68,33 @@ either:
   Optional short blurb about the program.
   ```
   Preview with `make serve`, then commit and push.
+
+## Undo something before it's pushed
+
+Nothing you do locally reaches the live site until you `git push` — `make
+scrape --import`, hand-adding a file, and editing an existing page are all
+just changes sitting in your working directory until then. So before you
+push:
+
+- **Delete a file you don't want** (a bad import, a hand-added event you
+  changed your mind about): `git status` shows it as untracked (`??`) — just
+  `rm _events/that-file.md`. It's as if it never existed; no trace, nothing
+  to clean up in git history.
+- **Abandon an edit to an existing file** (e.g. you started tweaking `bio.md`
+  and want to revert to what's already live): `git checkout -- bio.md`
+  discards the change and restores the last-committed version.
+- **Check what you're about to publish, all at once:** `git status` lists
+  everything changed/added; `git diff` shows the actual line-by-line changes
+  for anything already tracked.
+
+This only applies pre-push. Once something is pushed (or saved through
+Sveltia, which commits directly — see the note below), it's live, and fixing
+it means a normal follow-up edit-and-push rather than an undo.
+
+*Sveltia (`/admin/`) commits straight to the repo on save — there's no
+local-only preview stage for CMS edits the way there is for hand-edited
+files. If you (or Marjorie) publish something wrong through Sveltia, correct
+it with another save in Sveltia, or by editing the file directly and pushing.*
 
 ## Edit page text (Bio, Teaching, Home intro)
 
