@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A Jekyll static site — a professional website for violinist Marjorie Bagley (Professor of Violin at UNCG, Concertmaster of the Greensboro Symphony Orchestra). Ian Beatty (her husband) maintains it on her behalf. It builds and deploys to GitHub Pages via GitHub Actions. Live at https://ibeatty.github.io/marjoriebagley/.
 
-**See `_Workflows.md`** for the canonical "how do I do X" reference (add a concert, edit page text, recolor, add a page, check a deploy, etc.) — start there for any recurring task. **`_RedesignPlan.md`** has the active redesign plan: content model, IA, stack/CMS research findings, and the DreamHost-exit checklist. **`_DesignResearch.md`** holds the comparable-musician survey (conventions, staleness traps, the original five design directions). **`mockups/`** contains twelve self-contained homepage mockups for Marjorie's review — open `mockups/index.html` in a browser. **`_SetupSveltia.md`** has the CMS-auth setup steps (done; kept as reference).
+**See `_Workflows.md`** for the canonical "how do I do X" reference (add a concert, edit page text, recolor, add a page, check a deploy, etc.) — start there for any recurring task. **`_RedesignPlan.md`** has the active redesign plan: content model, IA, stack/CMS research findings, and the DreamHost-exit checklist. **`_DesignResearch.md`** holds the comparable-musician survey (conventions, staleness traps, the original five design directions). **`mockups/`** contains twelve self-contained homepage mockups for Marjorie's review — open `mockups/index.html` in a browser. **`_SetupSveltia.md`** has the CMS-auth setup steps (done; kept as reference). **`_SetupCloudflarePreview.md`** covers the Marjorie-preview branch/deployment (the `preview` branch exists; the Cloudflare Pages project itself is a one-time dashboard setup Ian still needs to do).
 
 ## Project context & current goals
 
@@ -23,7 +23,7 @@ Two workstreams are active this phase (they interact — stack choice affects ho
 Additional constraints and aspirations:
 
 - **Web-based form authoring is highly desirable** — ideally simple enough that **Marjorie can add/edit content herself** without touching git. Ian has avoided this so far only to keep the stack simple and GitHub Pages-friendly; a solution that stays static/free (e.g., a git-backed CMS) would square that circle.
-- **Hosting must stay free/static (GitHub Pages).** A core objective of the redesign is to **stop paying for DreamHost hosting**, where the old site lives. No solution may reintroduce a paid server or database.
+- **Hosting must stay free/static (GitHub Pages).** A core objective of the redesign is to **stop paying for DreamHost hosting**, where the old site lives. No solution may reintroduce a paid server or database. **One narrow, deliberate exception (Aug 2026):** a `preview` branch also deploys to Cloudflare Pages, free, for pre-publish review with Marjorie — see `_SetupCloudflarePreview.md`. That's internal tooling only, never where the public site lives; the production site is still exclusively GitHub Pages, reading only `main`.
 - **Minimize ongoing time/attention.** Ian and Marjorie are busy (three kids); nothing on the site may require much recurring effort to keep fresh. Concretely: **no design elements that depend on regularly refreshed content** — e.g., avoid photography-centric designs that look stale without new photos.
 - **Low learning curve, durable tools.** Ian has decades of CMS experience but wants *simple* here. Avoid idiosyncratic/niche tools that demand updates, forward migrations, or rescue migrations if abandoned. Prefer boring, widely-adopted, long-lived technology. This weighs heavily in stack/CMS choice: project longevity and maintainer health matter as much as features.
 - **Positioning — Marjorie's niche is an unusual hybrid**, and the site design must serve it: she is (a) a high-profile university faculty member whose studio depends on **active recruiting of 1:1 violin performance students**, and (b) a working performer (GSO concertmaster + ad-hoc chamber groups). She is **not** a private teacher (rare special cases aside), and she is neither "pure faculty" nor "pure performer" — the site should present the two roles as synergistic, and speak to both prospective students and concert audiences.
@@ -82,13 +82,24 @@ well-meaning change that adds maintenance surface or staleness.
   carries its own "may be inaccurate" banner, and the maintainer has said
   directly (Jun 2025) it's targeted for a hypothetical v2.0, calling it
   technically difficult. Don't rely on it or point Ian at it as available.
-  If a real review gate is ever wanted, it has to be built independent of
-  that feature: point `admin/config.yml`'s `backend.branch` at a non-`main`
-  branch, protect `main` to require reviewed PRs, and review via
-  `git checkout` + `make serve` locally (no new hosting) or a custom
-  preview-deploy Action if a shareable link matters. Not implemented — this
-  would change the live editing workflow for both Ian and Marjorie, so
-  confirm with Ian before building any of it.
+- **A real review gate is being built, independent of Sveltia (Aug 2026):**
+  a `preview` branch exists and is meant to deploy to its own Cloudflare
+  Pages URL — see `_SetupCloudflarePreview.md` and "Preview a batch of
+  changes with Marjorie" in `_Workflows.md`. **As of this writing the
+  Cloudflare Pages project itself hasn't been created yet** (one-time
+  dashboard setup, Ian's to do) — don't assume the preview URL exists or
+  works until that's confirmed done. Once set up, it's **opt-in**, used
+  mainly for
+  concert-import batches — push to `preview` instead of `main`, share the
+  Cloudflare URL, merge to `main` on github.com once approved. `main` has
+  **no branch protection yet** and Sveltia's `backend.branch` is still
+  `main` — both deliberately unchanged for now, so routine edits keep going
+  straight to `main` with zero ceremony. At the `marjoriebagley.com`
+  cutover this is expected to flip: protect `main` (require PRs) and decide
+  whether Sveltia should also target `preview` instead of `main` at that
+  point — don't do either without confirming with Ian first, and don't
+  assume it's already done just because the branch and Cloudflare project
+  exist.
 - `make build` completes with ZERO warnings. Any new warning is a regression
   you introduced.
 - An event counts as "upcoming" through the end of its concert day

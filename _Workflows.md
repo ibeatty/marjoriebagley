@@ -48,6 +48,37 @@ After importing, review each new file in `_events/`:
 Then commit and push — staging deploys automatically. Full detail on the
 scraper itself: `scripts/README.md`.
 
+Want Marjorie to look over a batch before it goes out, instead of pushing
+straight to `main`? See the next section.
+
+## Preview a batch of changes with Marjorie before publishing
+
+*One-time setup required first — `_SetupCloudflarePreview.md`. Currently
+optional/opt-in, used mainly for concert-import batches; becomes the
+required flow for everything after the `marjoriebagley.com` cutover (see
+`_RedesignPlan.md`).*
+
+A separate branch, `preview`, deploys automatically to its own stable
+Cloudflare Pages URL — independent of the real site, which only ever
+reads `main`. The loop:
+
+1. `git checkout preview` instead of `main` for this round of changes.
+   (Scraping: `make scrape ARGS="--import 1,3"` writes the files the same
+   way regardless of which branch is checked out.)
+2. `git push` — the preview URL updates within about a minute.
+3. Send Marjorie the preview URL (same one every time — bookmark it).
+   She looks it over on her own time, no git/localhost/anything involved
+   on her end, and tells you what to add, fix, or drop.
+4. Make those changes on `preview`, push again, repeat until she's happy.
+5. **Publish:** merge `preview` into `main` on github.com — open a pull
+   request (`github.com/ibeatty/marjoriebagley/compare/main...preview`,
+   or `gh pr create --base main --head preview`) and merge it, or simply
+   `git checkout main && git merge preview && git push` if you don't need
+   the PR's diff view first. Either way, this is the one step you execute
+   — Marjorie just needs to say "publish it."
+6. After merging, `preview` and `main` are identical again — no need to
+   delete or recreate the branch; the next round starts from step 1.
+
 ## Add a concert or event by hand
 
 For anything not on the GSO's site — a UNCG faculty recital, a chamber date —
