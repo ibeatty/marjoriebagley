@@ -76,8 +76,19 @@ well-meaning change that adds maintenance surface or staleness.
   `publish_mode: editorial_workflow` configured, so it has no draft/review
   step either — every save (yours, or eventually Marjorie's) commits
   straight to `main` and is live within the usual ~1–2 minute build, with
-  no human gate in between. If a review step is ever wanted, that Decap/
-  Sveltia feature is the way to add one.
+  no human gate in between.
+- **Sveltia's own "Editorial Workflow" feature does not work yet**, despite
+  its docs page describing drafts/PRs/a review board as complete — that page
+  carries its own "may be inaccurate" banner, and the maintainer has said
+  directly (Jun 2025) it's targeted for a hypothetical v2.0, calling it
+  technically difficult. Don't rely on it or point Ian at it as available.
+  If a real review gate is ever wanted, it has to be built independent of
+  that feature: point `admin/config.yml`'s `backend.branch` at a non-`main`
+  branch, protect `main` to require reviewed PRs, and review via
+  `git checkout` + `make serve` locally (no new hosting) or a custom
+  preview-deploy Action if a shareable link matters. Not implemented — this
+  would change the live editing workflow for both Ian and Marjorie, so
+  confirm with Ian before building any of it.
 - `make build` completes with ZERO warnings. Any new warning is a regression
   you introduced.
 - An event counts as "upcoming" through the end of its concert day
