@@ -82,17 +82,22 @@ well-meaning change that adds maintenance surface or staleness.
   carries its own "may be inaccurate" banner, and the maintainer has said
   directly (Jun 2025) it's targeted for a hypothetical v2.0, calling it
   technically difficult. Don't rely on it or point Ian at it as available.
-- **A real review gate is being built, independent of Sveltia (Aug 2026):**
-  a `preview` branch exists and is meant to deploy to its own Cloudflare
-  Pages URL — see `_SetupCloudflarePreview.md` and "Preview a batch of
-  changes with Marjorie" in `_Workflows.md`. **As of this writing the
-  Cloudflare Pages project itself hasn't been created yet** (one-time
+- **A real review gate is being built, independent of Sveltia (Aug–Sep
+  2026):** a `preview` branch exists and is meant to deploy to its own
+  Cloudflare Pages URL — see `_SetupCloudflarePreview.md` and "Preview a
+  batch of changes with Marjorie" in `_Workflows.md`. **As of this writing
+  the Cloudflare Pages project itself hasn't been created yet** (one-time
   dashboard setup, Ian's to do) — don't assume the preview URL exists or
-  works until that's confirmed done. Once set up, it's **opt-in**, used
-  mainly for
-  concert-import batches — push to `preview` instead of `main`, share the
-  Cloudflare URL, merge to `main` on github.com once approved. `main` has
-  **no branch protection yet** and Sveltia's `backend.branch` is still
+  works until that's confirmed done. `.github/workflows/sync-preview.yml`
+  merges `main` into `preview` automatically on every push, so `preview`
+  can only ever be equal to or ahead of `main`, never behind — this covers
+  the case nobody would otherwise remember: a future Sveltia save (which
+  commits straight to `main`) needs no one to think about `preview` at
+  all for it to show up there too, within about a minute. Once the
+  Cloudflare project exists, using the branch is **opt-in**, used mainly
+  for concert-import batches — push to `preview` instead of `main`, share
+  the Cloudflare URL, merge to `main` on github.com once approved. `main`
+  has **no branch protection yet** and Sveltia's `backend.branch` is still
   `main` — both deliberately unchanged for now, so routine edits keep going
   straight to `main` with zero ceremony. At the `marjoriebagley.com`
   cutover this is expected to flip: protect `main` (require PRs) and decide

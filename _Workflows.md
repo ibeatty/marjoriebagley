@@ -60,14 +60,17 @@ required flow for everything after the `marjoriebagley.com` cutover (see
 
 A separate branch, `preview`, deploys automatically to its own stable
 Cloudflare Pages URL — independent of the real site, which only ever
-reads `main`. The loop:
+reads `main`. A GitHub Actions workflow
+(`.github/workflows/sync-preview.yml`) keeps `preview` merged up to date
+with `main` automatically on every push to `main` — including a future
+Sveltia save, which nobody would otherwise remember to sync — so it can
+only ever be equal to or ahead of the live site, never behind. You don't
+need to sync it by hand, though `git checkout preview && git merge main`
+still works if you want it caught up immediately rather than waiting the
+minute or so for the Action to run. The loop:
 
-1. `git checkout preview`, then `git merge main` to bring it current first
-   — anything merged into `main` since your last round (doc updates,
-   template tweaks, other content) won't be on `preview` otherwise. This
-   is always a clean fast-forward as long as `preview` has no changes of
-   its own left over from a previous round that hasn't been merged yet.
-2. Make this round's changes on `preview` instead of `main`.
+1. `git checkout preview`.
+2. Make this round's changes there instead of on `main`.
    (Scraping: `make scrape ARGS="--import 1,3"` writes the files the same
    way regardless of which branch is checked out.)
 3. `git push` — the preview URL updates within about a minute.
