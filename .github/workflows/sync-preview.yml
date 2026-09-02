@@ -1,0 +1,39 @@
+name: Keep preview branch current with main
+
+# Whenever main changes -- a direct push, or a Sveltia save, since Sveltia
+# commits straight to main -- merge those changes into `preview` too, so the
+# Cloudflare preview deployment (see _SetupCloudflarePreview.md) never shows
+# content OLDER than what's already live on the real site. Anything on
+# `main` is already public, so there's nothing sensitive about `preview`
+# picking it up automatically; this only ever moves preview forward.
+#
+# If this ever fails -- a genuine merge conflict, e.g. the same file edited
+# differently on both branches in the same window -- it fails LOUDLY here
+# (a red run in the Actions tab) rather than silently leaving `preview`
+# stale. Resolve by hand: `git checkout preview`, `git merge main`, fix the
+# conflict, push.
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: preview
+          fetch-depth: 0
+
+      - name: Merge main into preview
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge origin/main -m "Auto-sync: merge main into preview"
+          git push origin preview
